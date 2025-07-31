@@ -44,8 +44,11 @@
     <Compile Include="AccountDL.cs" />
     <Compile Include="CategoryDL.cs" />
     <Compile Include="DataProvider.cs" />
+    <Compile Include="OrderDL.cs" />
     <Compile Include="ProductDL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TableDL.cs" />
+    <Compile Include="TableStatusDL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\TransferObject\TransferObject.csproj">

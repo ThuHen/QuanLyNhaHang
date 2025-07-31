@@ -114,8 +114,9 @@
             this.buttonPOS.Name = "buttonPOS";
             this.buttonPOS.Size = new System.Drawing.Size(233, 48);
             this.buttonPOS.TabIndex = 11;
-            this.buttonPOS.Text = "Đơn đặt món";
+            this.buttonPOS.Text = "Tạo đơn";
             this.buttonPOS.UseVisualStyleBackColor = true;
+            this.buttonPOS.Click += new System.EventHandler(this.buttonPOS_Click);
             // 
             // buttonAccount
             // 
@@ -164,6 +165,7 @@
             this.buttonTable.TabIndex = 10;
             this.buttonTable.Text = "Bàn Ăn";
             this.buttonTable.UseVisualStyleBackColor = true;
+            this.buttonTable.Click += new System.EventHandler(this.buttonTable_Click);
             // 
             // buttonReport
             // 
@@ -242,7 +244,7 @@
             // pictureBoxMinimize
             // 
             this.pictureBoxMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxMinimize.BackColor = System.Drawing.Color.DarkOrange;
+            this.pictureBoxMinimize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.pictureBoxMinimize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxMinimize.Image = global::PresentationLayer.Properties.Resources.icons8_horizontal_line_64;
             this.pictureBoxMinimize.Location = new System.Drawing.Point(871, 11);
@@ -257,7 +259,7 @@
             // pictureBoxMaximize
             // 
             this.pictureBoxMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxMaximize.BackColor = System.Drawing.Color.DarkOrange;
+            this.pictureBoxMaximize.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.pictureBoxMaximize.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxMaximize.Image = global::PresentationLayer.Properties.Resources.icons8_horizontal_line_64;
             this.pictureBoxMaximize.Location = new System.Drawing.Point(918, 11);
@@ -305,7 +307,7 @@
             this.panelCenter.Size = new System.Drawing.Size(1013, 653);
             this.panelCenter.TabIndex = 8;
             // 
-            // BangDieuKhien
+            // frmBangDieuKhien
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -316,9 +318,10 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "BangDieuKhien";
+            this.Name = "frmBangDieuKhien";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BangDieuKhien";
+            this.Load += new System.EventHandler(this.frmBangDieuKhien_Load);
             this.panelLeft.ResumeLayout(false);
             this.panelTop.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinimize)).EndInit();

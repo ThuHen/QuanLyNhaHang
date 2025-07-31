@@ -15,15 +15,13 @@ namespace PresentationLayer
         public frmBangDieuKhien()
         {
             InitializeComponent();
-            ShowCurrentTime();
         }
         public void ShowCurrentTime()
         {
             
             timer1.Interval = 1000; // mỗi 1 giây
             timer1.Tick += timer1_Tick;
-            timer1.Start();
-       
+            timer1.Start();     
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -35,6 +33,14 @@ namespace PresentationLayer
             panelCenter.Controls.Clear();
             frm.Dock = DockStyle.Fill;
             //frm.TopLevel = false;
+            panelCenter.Controls.Add(frm);
+            frm.Show();
+        }
+        public void AddForm(Form frm)
+        {
+            panelCenter.Controls.Clear();
+            frm.Dock = DockStyle.Fill;
+            frm.TopLevel = false;
             panelCenter.Controls.Add(frm);
             frm.Show();
         }
@@ -74,6 +80,23 @@ namespace PresentationLayer
         private void buttonMonAn_Click(object sender, EventArgs e)
         {
             AddUserControl(new UserControlProduct());
+        }
+
+        private void buttonTable_Click(object sender, EventArgs e)
+        {
+            AddUserControl(new UserControlTable());
+        }
+
+        private void buttonPOS_Click(object sender, EventArgs e)
+        {
+            Form frm = new frmPOS();
+            frm.Show();
+            this.Hide();
+        }
+
+        private void frmBangDieuKhien_Load(object sender, EventArgs e)
+        {
+            ShowCurrentTime();
         }
     }
 }

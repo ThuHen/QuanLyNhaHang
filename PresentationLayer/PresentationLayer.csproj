@@ -58,6 +58,18 @@
     <Compile Include="frmDangNhap.Designer.cs">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPOS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPOS.Designer.cs">
+      <DependentUpon>frmPOS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSelectTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectTable.Designer.cs">
+      <DependentUpon>frmSelectTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserControlCategory.cs">
@@ -72,11 +84,29 @@
     <Compile Include="UserControlProduct.Designer.cs">
       <DependentUpon>UserControlProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControlTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlTable.Designer.cs">
+      <DependentUpon>UserControlTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControOneProduct.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControOneProduct.Designer.cs">
+      <DependentUpon>UserControOneProduct.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frmBangDieuKhien.resx">
       <DependentUpon>frmBangDieuKhien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPOS.resx">
+      <DependentUpon>frmPOS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectTable.resx">
+      <DependentUpon>frmSelectTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -93,6 +123,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlProduct.resx">
       <DependentUpon>UserControlProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlTable.resx">
+      <DependentUpon>UserControlTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControOneProduct.resx">
+      <DependentUpon>UserControOneProduct.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
