@@ -52,6 +52,12 @@
     <Compile Include="frmBangDieuKhien.Designer.cs">
       <DependentUpon>frmBangDieuKhien.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmListOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmListOrder.Designer.cs">
+      <DependentUpon>frmListOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDangNhap.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,11 +78,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\frmNoteOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Resources\frmNoteOrder.Designer.cs">
+      <DependentUpon>frmNoteOrder.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControlCategory.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControlCategory.Designer.cs">
       <DependentUpon>UserControlCategory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlOneTable.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlOneTable.Designer.cs">
+      <DependentUpon>UserControlOneTable.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControlProduct.cs">
       <SubType>UserControl</SubType>
@@ -90,14 +108,17 @@
     <Compile Include="UserControlTable.Designer.cs">
       <DependentUpon>UserControlTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControOneProduct.cs">
+    <Compile Include="UserControlOneProduct.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControOneProduct.Designer.cs">
-      <DependentUpon>UserControOneProduct.cs</DependentUpon>
+    <Compile Include="UserControlOneProduct.Designer.cs">
+      <DependentUpon>UserControlOneProduct.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="frmBangDieuKhien.resx">
       <DependentUpon>frmBangDieuKhien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmListOrder.resx">
+      <DependentUpon>frmListOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
@@ -118,8 +139,14 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Resources\frmNoteOrder.resx">
+      <DependentUpon>frmNoteOrder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControlCategory.resx">
       <DependentUpon>UserControlCategory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlOneTable.resx">
+      <DependentUpon>UserControlOneTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlProduct.resx">
       <DependentUpon>UserControlProduct.cs</DependentUpon>
@@ -127,8 +154,8 @@
     <EmbeddedResource Include="UserControlTable.resx">
       <DependentUpon>UserControlTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControOneProduct.resx">
-      <DependentUpon>UserControOneProduct.cs</DependentUpon>
+    <EmbeddedResource Include="UserControlOneProduct.resx">
+      <DependentUpon>UserControlOneProduct.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -40,17 +40,17 @@ namespace BussinessLayer
         //}
 
 
-        //public List<Order> GetOrdersForBill()
-        //{
-        //    try
-        //    {
-        //        return orderDL.GetOrders();
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
+        public List<Order> GetListOrders()
+        {
+            try
+            {
+                return orderDL.GetListOrders();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
 
         //public List<Order> GetKitchenOrders()
         //{

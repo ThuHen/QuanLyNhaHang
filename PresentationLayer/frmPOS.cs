@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using BussinessLayer;
+using PresentationLayer.Resources;
 using TransferObject;
 
 namespace PresentationLayer
@@ -19,6 +20,12 @@ namespace PresentationLayer
     {
         private ProductBL productBL;
         private CategoryBL categoryBL;
+        public string orderType = "";
+        public int? maBan = 0;
+        public string tenBan = "";
+        public string ghiChuOrder = "";
+        public int selectedOrder = 0;
+
         public frmPOS()
         {
             InitializeComponent();
@@ -71,7 +78,7 @@ namespace PresentationLayer
         }
         private void CreateItemProducts(string proID, string name, string cat, string price, Image img)
         {
-            var ucpro = new UserControOneProduct()
+            var ucpro = new UserControlOneProduct()
             {
                 MaSanPham = int.Parse(proID),
                 TenSanPham = name,
@@ -83,7 +90,7 @@ namespace PresentationLayer
 
             ucpro.onSelect += (sender, e) =>
             {
-                var selectedProduct = (UserControOneProduct)sender;
+                var selectedProduct = (UserControlOneProduct)sender;
 
                 foreach (DataGridViewRow item in dataGridView.Rows)
                 {
@@ -138,7 +145,7 @@ namespace PresentationLayer
             Button cat = (Button)sender;
             foreach (var item in flowLayoutPanelProduct.Controls)
             {
-                var product = (UserControOneProduct)item;
+                var product = (UserControlOneProduct)item;
                 product.Visible = product.category.ToLower().Contains(cat.Text.Trim().ToLower());
             }
         }
@@ -146,11 +153,10 @@ namespace PresentationLayer
         {
             foreach (var item in flowLayoutPanelProduct.Controls)
             {
-                var product = (UserControOneProduct)item;
+                var product = (UserControlOneProduct)item;
                 product.Visible = true;
             }
         }
-
         private void pictureBoxCloseForm_Click(object sender, EventArgs e)
         {
             // Xác nhận trước khi thoát
@@ -163,71 +169,67 @@ namespace PresentationLayer
 
             }
         }
-
-        private void panelBottom_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void textBoxSearch_TextChanged(object sender, EventArgs e)
         {
             foreach (var item in flowLayoutPanelProduct.Controls)
             {
-                var pro = (UserControOneProduct)item;
+                var pro = (UserControlOneProduct)item;
                 pro.Visible = pro.TenSanPham.ToLower().Contains(textBoxSearch.Text.Trim().ToLower());
             }
         }
 
         private void labelNew_Click(object sender, EventArgs e)
         {
-            ClearForm();    
+            ClearForm();
         }
         private void ClearForm()
         {
-            //MainId = 0;
-            //lblTable.Text = "";
-            //lblWaiter.Text = "";
-            //lblTable.Visible = false;
-            //lblWaiter.Visible = false;
             labelTotal.Text = "0";
-            //lbDriverName.Text = "";
             dataGridView.Rows.Clear();
-            ghiChu = "";
+            ghiChuOrder = "";
             orderType = "";
-            maBan = 0; 
+            maBan = 0;
+            labelTable.Visible = false;
+            panelInfo.Visible = false;
+            ghiChuOrder = "";
         }
-        public string orderType = "";
+
         private void labelDinin_Click(object sender, EventArgs e)
         {
             orderType = "Ăn tại bàn";
             Form form = new frmSelectTable();
-            form.ShowDialog();
-            //if (form is frmSelectTable selectTableForm)
-            //{
-            //    maBan = selectTableForm.SelectedTableId;
-            //    ghiChu = selectTableForm.Note;
-            //    if (maBan != 0)
-            //    {
-            //        labelTable.Text = "Bàn: " + maBan.ToString();
-            //        labelTable.Visible = true;
-            //    }
-            //    else
-            //    {
-            //        labelTable.Visible = false;
-            //    }
-            //}
+
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                maBan = ((frmSelectTable)form).SelectedTableId;
+                tenBan = ((frmSelectTable)form).SelectedTableName;
+
+            }
+            if (maBan != 0)
+            {
+                labelTable.Text = tenBan.ToString();
+                labelTable.Visible = true;
+                panelInfo.Visible = true;
+            }
+            else
+            {
+                labelTable.Visible = false;
+                panelInfo.Visible = false;
+            }
         }
 
         private void labelTakeAway_Click(object sender, EventArgs e)
         {
             orderType = "Mang đi";
         }
-        public int? maBan = 0;
-        public string ghiChu = "";
-        public int selectedOrder = 0;
+
         private void labelSendKitchen_Click(object sender, EventArgs e)
         {
-
+            if(orderType == "")
+            {
+                MessageBox.Show("Vui lòng chọn loại đơn hàng trước khi gửi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             Order order = new Order
             {
                 LoaiDonHang = orderType,
@@ -237,7 +239,7 @@ namespace PresentationLayer
                 TienNhan = 0,
                 TienThua = 0,
                 MaBan = maBan == 0 ? null : maBan, // Nếu maBan là 0 thì để null
-                GhiChu = ghiChu,
+                GhiChu = ghiChuOrder,
                 ThoiGian = DateTime.Now,
                 Details = GetOrderDetailsFromGrid()
             };
@@ -259,18 +261,71 @@ namespace PresentationLayer
         private List<OrderDetails> GetOrderDetailsFromGrid()
         {
             var details = new List<OrderDetails>();
-            
+
             foreach (DataGridViewRow row in dataGridView.Rows)
             {
                 details.Add(new OrderDetails
                 {
                     MaSanPham = Convert.ToInt32(row.Cells["MaSanPham"].Value),
                     SoLuong = Convert.ToInt32(row.Cells["SoLuong"].Value),
-                                      
+
                 });
             }
             return details;
         }
 
+        private void labelNote_Click(object sender, EventArgs e)
+        {
+            Form form = new frmNoteOrder();
+            ((frmNoteOrder)form).note = ghiChuOrder; // Truyền ghi chú hiện tại vào form ghi chú
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                ghiChuOrder = ((frmNoteOrder)form).note;
+            }
+
+
+            if (ghiChuOrder != "")
+            {
+
+                labelIsNOte.Visible = true;
+            }
+            else
+            {
+                labelIsNOte.Visible = false;
+            }
+        }
+
+
+        private void labelList_Click(object sender, EventArgs e)
+        {
+            Form form = new frmListOrder();
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                //selectedOrder = ((frmListOrder)form).SelectedOrderId;
+                //if (selectedOrder > 0)
+                //{
+                //    Order order = OrderBL.GetOrderById(selectedOrder);
+                //    if (order != null)
+                //    {
+                //        dataGridView.Rows.Clear();
+                //        foreach (var detail in order.Details)
+                //        {
+                //            Product product = productBL.GetProductById(detail.MaSanPham);
+                //            if (product != null)
+                //            {
+                //                int stt = dataGridView.Rows.Count + 1;
+                //                Image hinh = product.HinhAnh != null ? Image.FromStream(new MemoryStream(product.HinhAnh)) : Properties.Resources.icons8_restaurant_48;
+                //                dataGridView.Rows.Add(new object[] { detail.MaSanPham, stt, product.TenSanPham, product.GiaSanPham, detail.SoLuong, detail.SoLuong * product.GiaSanPham, hinh, hinh });
+                //            }
+                //        }
+                //        GetTotal();
+                //        labelTable.Text = order.MaBan.HasValue ? "Bàn " + order.MaBan.Value : "Mang đi";
+                //        labelTable.Visible = true;
+                //        panelInfo.Visible = true;
+                //        ghiChuOrder = order.GhiChu;
+                //    }
+                //}
+            }
+        }
     }
 }

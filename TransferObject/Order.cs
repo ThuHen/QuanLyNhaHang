@@ -16,7 +16,8 @@ namespace TransferObject
         public double TongTien { get; set; }
         public double TienNhan { get; set; }
         public double TienThua { get; set; }
-        public int? MaBan { get; set; }     
+        public int? MaBan { get; set; }  
+        public string TenBan { get; set; } 
         public string GhiChu { get; set; }
         public DateTime ThoiGian { get; set; }
 

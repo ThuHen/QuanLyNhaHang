@@ -37,18 +37,18 @@
             this.panelData = new System.Windows.Forms.Panel();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.tabPageAddEdit = new System.Windows.Forms.TabPage();
-            this.comboBoxTrangThaiBan = new System.Windows.Forms.ComboBox();
-            this.numericUpDownChoNgoi = new System.Windows.Forms.NumericUpDown();
-            this.labelChoNgoi = new System.Windows.Forms.Label();
             this.textBoxVitri = new System.Windows.Forms.TextBox();
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.textBoxMota = new System.Windows.Forms.TextBox();
+            this.comboBoxTrangThaiBan = new System.Windows.Forms.ComboBox();
+            this.labelName = new System.Windows.Forms.Label();
+            this.labelChoNgoi = new System.Windows.Forms.Label();
+            this.numericUpDownChoNgoi = new System.Windows.Forms.NumericUpDown();
+            this.labelMota = new System.Windows.Forms.Label();
             this.labelVitri = new System.Windows.Forms.Label();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.labelstatus = new System.Windows.Forms.Label();
-            this.buttonSave = new System.Windows.Forms.Button();
-            this.textBoxMota = new System.Windows.Forms.TextBox();
-            this.textBoxName = new System.Windows.Forms.TextBox();
-            this.labelMota = new System.Windows.Forms.Label();
-            this.labelName = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tabControlTable.SuspendLayout();
             this.tabPageList.SuspendLayout();
@@ -79,7 +79,7 @@
             this.tabPageList.Location = new System.Drawing.Point(4, 34);
             this.tabPageList.Name = "tabPageList";
             this.tabPageList.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageList.Size = new System.Drawing.Size(1249, 708);
+            this.tabPageList.Size = new System.Drawing.Size(1441, 639);
             this.tabPageList.TabIndex = 0;
             this.tabPageList.Text = "Danh sách";
             this.tabPageList.UseVisualStyleBackColor = true;
@@ -116,9 +116,9 @@
             // 
             this.panelData.Controls.Add(this.dataGridView);
             this.panelData.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelData.Location = new System.Drawing.Point(3, 192);
+            this.panelData.Location = new System.Drawing.Point(3, 123);
             this.panelData.Name = "panelData";
-            this.panelData.Size = new System.Drawing.Size(1243, 513);
+            this.panelData.Size = new System.Drawing.Size(1435, 513);
             this.panelData.TabIndex = 0;
             // 
             // dataGridView
@@ -130,7 +130,7 @@
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.RowTemplate.Height = 24;
-            this.dataGridView.Size = new System.Drawing.Size(1243, 513);
+            this.dataGridView.Size = new System.Drawing.Size(1435, 513);
             this.dataGridView.TabIndex = 0;
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
@@ -156,17 +156,57 @@
             this.tabPageAddEdit.Text = "Tạo mới ";
             this.tabPageAddEdit.UseVisualStyleBackColor = true;
             // 
+            // textBoxVitri
+            // 
+            this.textBoxVitri.Location = new System.Drawing.Point(486, 178);
+            this.textBoxVitri.Name = "textBoxVitri";
+            this.textBoxVitri.Size = new System.Drawing.Size(281, 30);
+            this.textBoxVitri.TabIndex = 15;
+            // 
+            // textBoxName
+            // 
+            this.textBoxName.Location = new System.Drawing.Point(205, 178);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(213, 30);
+            this.textBoxName.TabIndex = 1;
+            // 
+            // textBoxMota
+            // 
+            this.textBoxMota.Location = new System.Drawing.Point(205, 271);
+            this.textBoxMota.Multiline = true;
+            this.textBoxMota.Name = "textBoxMota";
+            this.textBoxMota.Size = new System.Drawing.Size(213, 83);
+            this.textBoxMota.TabIndex = 3;
+            // 
             // comboBoxTrangThaiBan
             // 
             this.comboBoxTrangThaiBan.FormattingEnabled = true;
             this.comboBoxTrangThaiBan.Location = new System.Drawing.Point(592, 321);
             this.comboBoxTrangThaiBan.Name = "comboBoxTrangThaiBan";
-            this.comboBoxTrangThaiBan.Size = new System.Drawing.Size(109, 33);
+            this.comboBoxTrangThaiBan.Size = new System.Drawing.Size(175, 33);
             this.comboBoxTrangThaiBan.TabIndex = 19;
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Location = new System.Drawing.Point(200, 150);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(85, 25);
+            this.labelName.TabIndex = 0;
+            this.labelName.Text = "Tên bàn";
+            // 
+            // labelChoNgoi
+            // 
+            this.labelChoNgoi.AutoSize = true;
+            this.labelChoNgoi.Location = new System.Drawing.Point(481, 236);
+            this.labelChoNgoi.Name = "labelChoNgoi";
+            this.labelChoNgoi.Size = new System.Drawing.Size(116, 25);
+            this.labelChoNgoi.TabIndex = 16;
+            this.labelChoNgoi.Text = "Số chỗ ngồi";
             // 
             // numericUpDownChoNgoi
             // 
-            this.numericUpDownChoNgoi.Location = new System.Drawing.Point(640, 236);
+            this.numericUpDownChoNgoi.Location = new System.Drawing.Point(661, 234);
             this.numericUpDownChoNgoi.Maximum = new decimal(new int[] {
             30,
             0,
@@ -178,7 +218,7 @@
             0,
             0});
             this.numericUpDownChoNgoi.Name = "numericUpDownChoNgoi";
-            this.numericUpDownChoNgoi.Size = new System.Drawing.Size(61, 30);
+            this.numericUpDownChoNgoi.Size = new System.Drawing.Size(106, 30);
             this.numericUpDownChoNgoi.TabIndex = 17;
             this.numericUpDownChoNgoi.Value = new decimal(new int[] {
             1,
@@ -186,21 +226,14 @@
             0,
             0});
             // 
-            // labelChoNgoi
+            // labelMota
             // 
-            this.labelChoNgoi.AutoSize = true;
-            this.labelChoNgoi.Location = new System.Drawing.Point(481, 236);
-            this.labelChoNgoi.Name = "labelChoNgoi";
-            this.labelChoNgoi.Size = new System.Drawing.Size(116, 25);
-            this.labelChoNgoi.TabIndex = 16;
-            this.labelChoNgoi.Text = "Số chỗ ngồi";
-            // 
-            // textBoxVitri
-            // 
-            this.textBoxVitri.Location = new System.Drawing.Point(486, 178);
-            this.textBoxVitri.Name = "textBoxVitri";
-            this.textBoxVitri.Size = new System.Drawing.Size(215, 30);
-            this.textBoxVitri.TabIndex = 15;
+            this.labelMota.AutoSize = true;
+            this.labelMota.Location = new System.Drawing.Point(200, 236);
+            this.labelMota.Name = "labelMota";
+            this.labelMota.Size = new System.Drawing.Size(79, 25);
+            this.labelMota.TabIndex = 2;
+            this.labelMota.Text = "Ghi chú";
             // 
             // labelVitri
             // 
@@ -211,11 +244,23 @@
             this.labelVitri.TabIndex = 14;
             this.labelVitri.Text = "Vị trí";
             // 
+            // buttonSave
+            // 
+            this.buttonSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.buttonSave.ForeColor = System.Drawing.Color.Black;
+            this.buttonSave.Location = new System.Drawing.Point(285, 449);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(133, 42);
+            this.buttonSave.TabIndex = 8;
+            this.buttonSave.Text = "Lưu";
+            this.buttonSave.UseVisualStyleBackColor = false;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
             // buttonCancel
             // 
             this.buttonCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.buttonCancel.ForeColor = System.Drawing.Color.Black;
-            this.buttonCancel.Location = new System.Drawing.Point(503, 449);
+            this.buttonCancel.Location = new System.Drawing.Point(516, 449);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(133, 42);
             this.buttonCancel.TabIndex = 13;
@@ -231,51 +276,6 @@
             this.labelstatus.Size = new System.Drawing.Size(100, 25);
             this.labelstatus.TabIndex = 12;
             this.labelstatus.Text = "Trạng thái";
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.buttonSave.ForeColor = System.Drawing.Color.Black;
-            this.buttonSave.Location = new System.Drawing.Point(285, 449);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(133, 42);
-            this.buttonSave.TabIndex = 8;
-            this.buttonSave.Text = "Lưu";
-            this.buttonSave.UseVisualStyleBackColor = false;
-            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // textBoxMota
-            // 
-            this.textBoxMota.Location = new System.Drawing.Point(205, 271);
-            this.textBoxMota.Multiline = true;
-            this.textBoxMota.Name = "textBoxMota";
-            this.textBoxMota.Size = new System.Drawing.Size(213, 83);
-            this.textBoxMota.TabIndex = 3;
-            // 
-            // textBoxName
-            // 
-            this.textBoxName.Location = new System.Drawing.Point(205, 178);
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(213, 30);
-            this.textBoxName.TabIndex = 1;
-            // 
-            // labelMota
-            // 
-            this.labelMota.AutoSize = true;
-            this.labelMota.Location = new System.Drawing.Point(200, 236);
-            this.labelMota.Name = "labelMota";
-            this.labelMota.Size = new System.Drawing.Size(79, 25);
-            this.labelMota.TabIndex = 2;
-            this.labelMota.Text = "Ghi chú";
-            // 
-            // labelName
-            // 
-            this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(200, 150);
-            this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(85, 25);
-            this.labelName.TabIndex = 0;
-            this.labelName.Text = "Tên bàn";
             // 
             // contextMenuStrip1
             // 

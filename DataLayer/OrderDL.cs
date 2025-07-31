@@ -32,7 +32,7 @@ namespace DataLayer
                 new SqlParameter("@Note", order.GhiChu),
                 new SqlParameter("@Time", order.ThoiGian)
             };
-            
+
             object result = MyExecuteScalar(query, CommandType.Text, parameters);
             int orderID = Convert.ToInt32(result);
 
@@ -115,53 +115,70 @@ namespace DataLayer
         //    }
 
 
-        //    public List<Order> GetOrders()
-        //    {
-        //        string sql = "SELECT * FROM tblMain WHERE Status <> 'Pending'";
-        //        string mainID, date, time, tableName, waiterName, Status, OrderType, Total, Received, Change, DriverID, cusName, cusPhone;
+        public List<Order> GetListOrders()
+        {
+            //WHERE MaTrangThai <> 3"; // Giả sử 3 là mã trạng thái 'Complete'
+            string sql = @"
+            SELECT MaDonHang, LoaiDonHang, ThoiGian, TrangThai, DaThanhToan, d.MaBan, TenBan  
+            FROM DonHang d
+            INNER JOIN TrangThaiDonHang t ON d.MaTrangThai = t.MaTrangThai
+            LEFT JOIN BanAn b ON d.MaBan = b.MaBan";
 
-        //        List<Order> orders = new List<Order>();
+            List<Order> orders = new List<Order>();
 
 
-        //        try
-        //        {
-        //            {
-        //                Connect(); // Hàm kết nối CSDL của bạn
-        //                SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);
+            try
+            {
+                {
+                    Connect();
+                    SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);
 
-        //                while (reader.Read())
-        //                {
-        //                    mainID = reader[0].ToString();
-        //                    date = reader[1].ToString();
-        //                    time = reader[2].ToString();
-        //                    tableName = reader[3].ToString();
-        //                    waiterName = reader[4].ToString();
-        //                    Status = reader[5].ToString();
-        //                    OrderType = reader[6].ToString();
-        //                    Total = reader[7].ToString();
-        //                    Received = reader[8].ToString();
-        //                    Change = reader[9].ToString();
-        //                    DriverID = reader[10].ToString();
-        //                    cusName = reader[11].ToString();
-        //                    cusPhone = reader[12].ToString();
+                    while (reader.Read())
+                    {
+                        int MaDonHang = Convert.ToInt32(reader["MaDonHang"]);
+                        string LoaiDonHang = reader["LoaiDonHang"].ToString();
+                        DateTime ThoiGian = Convert.ToDateTime(reader["ThoiGian"]);
+                        //int MaTrangThai = Convert.ToInt32(reader["MaTrangThai"]);
+                        string TrangThai = reader["TrangThai"].ToString();
+                        string DaThanhToan = reader["DaThanhToan"].ToString();
+                        int? MaBan = reader["MaBan"] != DBNull.Value ? Convert.ToInt32(reader["MaBan"]) : (int?)null;
+                        string TenBan;
+                        if (MaBan != null)
+                        {
+                            TenBan = reader["TenBan"].ToString();
+                        }
+                        else
+                        {
+                            TenBan = " ";
+                        }
 
-        //                    Order order = new Order(int.Parse(mainID), DateTime.Parse(date), time, tableName, waiterName, Status, OrderType, Double.Parse(Total), Double.Parse(Received), Double.Parse(Change), int.Parse(DriverID), cusName, cusPhone);
-        //                    //order.Details = GetOrderDetails(order.MainID);
-        //                    orders.Add(order);
-        //                }
-        //                reader.Close();
-        //                return orders;
-        //            }
-        //        }
-        //        catch (SqlException ex)
-        //        {
-        //            throw ex; // Có thể log hoặc xử lý chi tiết hơn
-        //        }
-        //        finally
-        //        {
-        //            Disconnect(); // Đóng kết nối
-        //        }
-        //    }
+
+
+                        Order order = new Order
+                        {
+                            MaDonHang = MaDonHang,
+                            LoaiDonHang = LoaiDonHang,
+                            //MaTrangThai = MaTrangThai,
+                            TrangThai = TrangThai,
+                            DaThanhToan = DaThanhToan,
+                            ThoiGian = ThoiGian,
+                            TenBan = TenBan
+                        };
+                        orders.Add(order);
+                    }
+                    reader.Close();
+                    return orders;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex; // Có thể log hoặc xử lý chi tiết hơn
+            }
+            finally
+            {
+                Disconnect(); // Đóng kết nối
+            }
+        }
         //    public List<Order> GetKitchenOrders()
         //    {
         //        string sql = "SELECT MainID, Date, Time, TableName, WaiterName, OrderType FROM tblMain WHERE Status <>'Complete'";

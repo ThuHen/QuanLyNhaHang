@@ -1,6 +1,6 @@
 ﻿namespace PresentationLayer
 {
-    partial class UserControOneProduct
+    partial class UserControlOneProduct
     {
         /// <summary> 
         /// Required designer variable.

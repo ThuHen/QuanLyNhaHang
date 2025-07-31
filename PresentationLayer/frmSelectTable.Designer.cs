@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.panelTop = new System.Windows.Forms.Panel();
-            this.flowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.pictureBoxCloseForm = new System.Windows.Forms.PictureBox();
             this.labelTitle = new System.Windows.Forms.Label();
+            this.pictureBoxCloseForm = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanelTable = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanelChuThich = new System.Windows.Forms.FlowLayoutPanel();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCloseForm)).BeginInit();
             this.SuspendLayout();
@@ -49,14 +49,16 @@
             this.panelTop.Size = new System.Drawing.Size(829, 97);
             this.panelTop.TabIndex = 0;
             // 
-            // flowLayoutPanel
+            // labelTitle
             // 
-            this.flowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.flowLayoutPanel.Location = new System.Drawing.Point(0, 543);
-            this.flowLayoutPanel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.flowLayoutPanel.Name = "flowLayoutPanel";
-            this.flowLayoutPanel.Size = new System.Drawing.Size(829, 61);
-            this.flowLayoutPanel.TabIndex = 1;
+            this.labelTitle.AutoSize = true;
+            this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTitle.Location = new System.Drawing.Point(73, 32);
+            this.labelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(156, 36);
+            this.labelTitle.TabIndex = 3;
+            this.labelTitle.Text = "Chọn Bàn";
             // 
             // pictureBoxCloseForm
             // 
@@ -72,34 +74,32 @@
             this.pictureBoxCloseForm.TabStop = false;
             this.pictureBoxCloseForm.Click += new System.EventHandler(this.pictureBoxCloseForm_Click);
             // 
-            // labelTitle
-            // 
-            this.labelTitle.AutoSize = true;
-            this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelTitle.Location = new System.Drawing.Point(73, 32);
-            this.labelTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelTitle.Name = "labelTitle";
-            this.labelTitle.Size = new System.Drawing.Size(156, 36);
-            this.labelTitle.TabIndex = 3;
-            this.labelTitle.Text = "Chọn Bàn";
-            // 
             // flowLayoutPanelTable
             // 
-            this.flowLayoutPanelTable.BackColor = System.Drawing.SystemColors.Control;
-            this.flowLayoutPanelTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelTable.Location = new System.Drawing.Point(0, 97);
+            this.flowLayoutPanelTable.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanelTable.Location = new System.Drawing.Point(0, 220);
             this.flowLayoutPanelTable.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.flowLayoutPanelTable.Name = "flowLayoutPanelTable";
-            this.flowLayoutPanelTable.Size = new System.Drawing.Size(829, 446);
-            this.flowLayoutPanelTable.TabIndex = 2;
+            this.flowLayoutPanelTable.Size = new System.Drawing.Size(829, 384);
+            this.flowLayoutPanelTable.TabIndex = 1;
+            // 
+            // flowLayoutPanelChuThich
+            // 
+            this.flowLayoutPanelChuThich.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowLayoutPanelChuThich.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowLayoutPanelChuThich.Location = new System.Drawing.Point(0, 97);
+            this.flowLayoutPanelChuThich.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.flowLayoutPanelChuThich.Name = "flowLayoutPanelChuThich";
+            this.flowLayoutPanelChuThich.Size = new System.Drawing.Size(829, 78);
+            this.flowLayoutPanelChuThich.TabIndex = 2;
             // 
             // frmSelectTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(829, 604);
+            this.Controls.Add(this.flowLayoutPanelChuThich);
             this.Controls.Add(this.flowLayoutPanelTable);
-            this.Controls.Add(this.flowLayoutPanel);
             this.Controls.Add(this.panelTop);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -118,9 +118,9 @@
         #endregion
 
         private System.Windows.Forms.Panel panelTop;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelTable;
         private System.Windows.Forms.PictureBox pictureBoxCloseForm;
         private System.Windows.Forms.Label labelTitle;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelTable;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelChuThich;
     }
 }
