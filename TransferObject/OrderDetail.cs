@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TransferObject
 {
-    public class OrderDetails
+    public class OrderDetail
     {
         public int MaChiTietDonHang { get; set; }
         public int MaDonHang { get; set; }
@@ -15,7 +15,7 @@ namespace TransferObject
         public double GiaSanPham { get; set; }
         public int SoLuong { get; set; }
         public double ThanhTien { get; set; }
-        public OrderDetails()
+        public OrderDetail()
         {
         }
         //save

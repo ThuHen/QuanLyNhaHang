@@ -31,16 +31,7 @@ namespace BussinessLayer
                 return selectedOrder;
             }
         }
-
-
-
-        //public void MarkOrderAsComplete(int mainId)
-        //{
-        //    orderDL.MarkOrderAsComplete(mainId);
-        //}
-
-
-        public List<Order> GetListOrders()
+ public List<Order> GetListOrders()
         {
             try
             {
@@ -51,27 +42,52 @@ namespace BussinessLayer
                 throw ex;
             }
         }
+        public Order GetOrderById(int mainId)
+        {
+            try
+            {
+                return orderDL.GetOrderById(mainId);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+        public List<OrderDetail> GetOrderDetails(int orderID)
+        {
+            try
+            {
+                return orderDL.GetOrderDetails(orderID);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+
+        public int UpdatePayment(int orderId, double total, double received, double change)
+        {
+            
+            return orderDL.UpdatePayment(orderId, total, received, change);
+        }
+        public void MarkStatusOrder(int mainId, string trangThai)
+        {
+            orderDL.MarkStatusOrder(mainId, trangThai);
+        }
+
+
 
         //public List<Order> GetKitchenOrders()
         //{
         //    return orderDL.GetKitchenOrders();
         //}
-        //public List<OrderDetail>  GetOrderDetails(int mainId)
-        //{
-        //    return orderDL.GetOrderDetails(mainId);
-        //}
+
         //public string GetOrderType(int mainId)
         //{
         //    return orderDL.GetOrderType(mainId);
         //}
-        //public Order GetOrder(int mainId)
-        //{
-        //    return orderDL.GetOrder(mainId);
-        //}
-        //public bool UpdatePayment(int mainId, decimal total, decimal received, decimal change)
-        //{
-        //    return orderDL.UpdatePayment(mainId, total, received, change);
-        //}
+
+
         //public List<FullBillDetail> GetFullBillDetails(int mainId)
         //{
         //    return orderDL.GetFullBillDetails(mainId);

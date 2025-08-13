@@ -66,7 +66,7 @@
             this.tabControlTable.Location = new System.Drawing.Point(0, 0);
             this.tabControlTable.Name = "tabControlTable";
             this.tabControlTable.SelectedIndex = 0;
-            this.tabControlTable.Size = new System.Drawing.Size(1449, 677);
+            this.tabControlTable.Size = new System.Drawing.Size(1022, 677);
             this.tabControlTable.TabIndex = 1;
             // 
             // tabPageList
@@ -79,7 +79,7 @@
             this.tabPageList.Location = new System.Drawing.Point(4, 34);
             this.tabPageList.Name = "tabPageList";
             this.tabPageList.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageList.Size = new System.Drawing.Size(1441, 639);
+            this.tabPageList.Size = new System.Drawing.Size(1014, 639);
             this.tabPageList.TabIndex = 0;
             this.tabPageList.Text = "Danh sách";
             this.tabPageList.UseVisualStyleBackColor = true;
@@ -118,7 +118,7 @@
             this.panelData.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelData.Location = new System.Drawing.Point(3, 123);
             this.panelData.Name = "panelData";
-            this.panelData.Size = new System.Drawing.Size(1435, 513);
+            this.panelData.Size = new System.Drawing.Size(1008, 513);
             this.panelData.TabIndex = 0;
             // 
             // dataGridView
@@ -130,7 +130,7 @@
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.RowTemplate.Height = 24;
-            this.dataGridView.Size = new System.Drawing.Size(1435, 513);
+            this.dataGridView.Size = new System.Drawing.Size(1008, 513);
             this.dataGridView.TabIndex = 0;
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
@@ -291,7 +291,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "UserControlTable";
-            this.Size = new System.Drawing.Size(1449, 677);
+            this.Size = new System.Drawing.Size(1022, 677);
             this.Load += new System.EventHandler(this.UserControlTable_Load);
             this.tabControlTable.ResumeLayout(false);
             this.tabPageList.ResumeLayout(false);

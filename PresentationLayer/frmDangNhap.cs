@@ -55,6 +55,8 @@ namespace PresentationLayer
                 }
                 else if (currentUser.MaPhanQuyen == 2)
                 {
+                    frmPOS frm = new frmPOS(0);
+                    frm.Show();
                 }
                 else if (currentUser.MaPhanQuyen == 3)
                 {

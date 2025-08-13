@@ -78,7 +78,9 @@ namespace PresentationLayer
             colEdit.Name = "Edit";
             colEdit.HeaderText = "";
             colEdit.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            //colEdit.Image = Properties.Resources.edit; // Assuming you have an edit icon in your resources
             dataGridView.Columns.Add(colEdit);
+
 
             // Cột Delete
             DataGridViewImageColumn colDelete = new DataGridViewImageColumn();

@@ -27,8 +27,13 @@ namespace PresentationLayer
             get { return int.Parse(labelSoChoNgoi.Text); }
             set { labelSoChoNgoi.Text = value.ToString()+" chỗ"; }
         }
-        
-        
+        public int MaDonHang
+        {
+            get { return int.Parse(labelOrderId.Text); }
+            set { labelOrderId.Text = "Đơn "+value.ToString() ; }
+        }
+
+
         public event EventHandler onSelect = null;
        
 

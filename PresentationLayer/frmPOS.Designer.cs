@@ -32,6 +32,7 @@
             this.panelTop = new System.Windows.Forms.Panel();
             this.labelNote = new System.Windows.Forms.Label();
             this.panelInfo = new System.Windows.Forms.Panel();
+            this.labelIsNOte = new System.Windows.Forms.Label();
             this.labelTable = new System.Windows.Forms.Label();
             this.labelList = new System.Windows.Forms.Label();
             this.labelTakeAway = new System.Windows.Forms.Label();
@@ -44,7 +45,7 @@
             this.labelTime = new System.Windows.Forms.Label();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.panelBottom = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonCash = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.labelTotal = new System.Windows.Forms.Label();
             this.flowLayoutPanelCategory = new System.Windows.Forms.FlowLayoutPanel();
@@ -59,7 +60,6 @@
             this.delete = new System.Windows.Forms.DataGridViewImageColumn();
             this.flowLayoutPanelProduct = new System.Windows.Forms.FlowLayoutPanel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.labelIsNOte = new System.Windows.Forms.Label();
             this.panelTop.SuspendLayout();
             this.panelInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCloseForm)).BeginInit();
@@ -71,7 +71,6 @@
             // 
             // panelTop
             // 
-            this.panelTop.Controls.Add(this.labelIsNOte);
             this.panelTop.Controls.Add(this.labelNote);
             this.panelTop.Controls.Add(this.panelInfo);
             this.panelTop.Controls.Add(this.labelList);
@@ -84,7 +83,7 @@
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1476, 133);
+            this.panelTop.Size = new System.Drawing.Size(1437, 133);
             this.panelTop.TabIndex = 0;
             // 
             // labelNote
@@ -104,12 +103,24 @@
             // panelInfo
             // 
             this.panelInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelInfo.Controls.Add(this.labelIsNOte);
             this.panelInfo.Controls.Add(this.labelTable);
             this.panelInfo.Location = new System.Drawing.Point(388, 12);
             this.panelInfo.Name = "panelInfo";
             this.panelInfo.Size = new System.Drawing.Size(200, 98);
             this.panelInfo.TabIndex = 0;
             this.panelInfo.Visible = false;
+            // 
+            // labelIsNOte
+            // 
+            this.labelIsNOte.AutoSize = true;
+            this.labelIsNOte.Location = new System.Drawing.Point(19, 57);
+            this.labelIsNOte.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelIsNOte.Name = "labelIsNOte";
+            this.labelIsNOte.Size = new System.Drawing.Size(112, 25);
+            this.labelIsNOte.TabIndex = 13;
+            this.labelIsNOte.Text = "Có ghi chú!";
+            this.labelIsNOte.Visible = false;
             // 
             // labelTable
             // 
@@ -167,12 +178,12 @@
             // labelDinin
             // 
             this.labelDinin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.labelDinin.Image = global::PresentationLayer.Properties.Resources.icons8_close_64;
+            this.labelDinin.Image = global::PresentationLayer.Properties.Resources.icons8_restaurant_table_100;
             this.labelDinin.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelDinin.Location = new System.Drawing.Point(702, 9);
+            this.labelDinin.Location = new System.Drawing.Point(677, 9);
             this.labelDinin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDinin.Name = "labelDinin";
-            this.labelDinin.Size = new System.Drawing.Size(92, 101);
+            this.labelDinin.Size = new System.Drawing.Size(117, 119);
             this.labelDinin.TabIndex = 8;
             this.labelDinin.Text = "Tại bàn";
             this.labelDinin.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -198,7 +209,7 @@
             this.pictureBoxCloseForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.pictureBoxCloseForm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxCloseForm.Image = global::PresentationLayer.Properties.Resources.icons8_close_64;
-            this.pictureBoxCloseForm.Location = new System.Drawing.Point(1400, 20);
+            this.pictureBoxCloseForm.Location = new System.Drawing.Point(1361, 20);
             this.pictureBoxCloseForm.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
             this.pictureBoxCloseForm.Name = "pictureBoxCloseForm";
             this.pictureBoxCloseForm.Size = new System.Drawing.Size(54, 57);
@@ -226,7 +237,7 @@
             this.panelSearch.Location = new System.Drawing.Point(0, 133);
             this.panelSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelSearch.Name = "panelSearch";
-            this.panelSearch.Size = new System.Drawing.Size(1476, 48);
+            this.panelSearch.Size = new System.Drawing.Size(1437, 48);
             this.panelSearch.TabIndex = 1;
             // 
             // labelTime
@@ -250,29 +261,30 @@
             // 
             // panelBottom
             // 
-            this.panelBottom.Controls.Add(this.button1);
+            this.panelBottom.Controls.Add(this.buttonCash);
             this.panelBottom.Controls.Add(this.label2);
             this.panelBottom.Controls.Add(this.labelTotal);
             this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBottom.Location = new System.Drawing.Point(0, 670);
+            this.panelBottom.Location = new System.Drawing.Point(0, 552);
             this.panelBottom.Name = "panelBottom";
-            this.panelBottom.Size = new System.Drawing.Size(1476, 124);
+            this.panelBottom.Size = new System.Drawing.Size(1437, 124);
             this.panelBottom.TabIndex = 2;
             // 
-            // button1
+            // buttonCash
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.button1.Location = new System.Drawing.Point(1017, 24);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(180, 51);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Thanh toán";
-            this.button1.UseVisualStyleBackColor = false;
+            this.buttonCash.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.buttonCash.Location = new System.Drawing.Point(1050, 24);
+            this.buttonCash.Name = "buttonCash";
+            this.buttonCash.Size = new System.Drawing.Size(147, 51);
+            this.buttonCash.TabIndex = 5;
+            this.buttonCash.Text = "Thanh toán";
+            this.buttonCash.UseVisualStyleBackColor = false;
+            this.buttonCash.Click += new System.EventHandler(this.buttonCash_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1261, 37);
+            this.label2.Location = new System.Drawing.Point(1230, 37);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 25);
@@ -282,7 +294,7 @@
             // labelTotal
             // 
             this.labelTotal.AutoSize = true;
-            this.labelTotal.Location = new System.Drawing.Point(1360, 37);
+            this.labelTotal.Location = new System.Drawing.Point(1329, 37);
             this.labelTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTotal.Name = "labelTotal";
             this.labelTotal.Size = new System.Drawing.Size(61, 25);
@@ -294,16 +306,16 @@
             this.flowLayoutPanelCategory.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanelCategory.Location = new System.Drawing.Point(0, 181);
             this.flowLayoutPanelCategory.Name = "flowLayoutPanelCategory";
-            this.flowLayoutPanelCategory.Size = new System.Drawing.Size(186, 489);
+            this.flowLayoutPanelCategory.Size = new System.Drawing.Size(186, 371);
             this.flowLayoutPanelCategory.TabIndex = 3;
             // 
             // panelOrder
             // 
             this.panelOrder.Controls.Add(this.dataGridView);
             this.panelOrder.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelOrder.Location = new System.Drawing.Point(871, 181);
+            this.panelOrder.Location = new System.Drawing.Point(832, 181);
             this.panelOrder.Name = "panelOrder";
-            this.panelOrder.Size = new System.Drawing.Size(605, 489);
+            this.panelOrder.Size = new System.Drawing.Size(605, 371);
             this.panelOrder.TabIndex = 4;
             // 
             // dataGridView
@@ -327,7 +339,7 @@
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.RowTemplate.Height = 24;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView.Size = new System.Drawing.Size(605, 489);
+            this.dataGridView.Size = new System.Drawing.Size(605, 371);
             this.dataGridView.TabIndex = 0;
             // 
             // MaSanPham
@@ -395,24 +407,14 @@
             this.flowLayoutPanelProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanelProduct.Location = new System.Drawing.Point(186, 181);
             this.flowLayoutPanelProduct.Name = "flowLayoutPanelProduct";
-            this.flowLayoutPanelProduct.Size = new System.Drawing.Size(685, 489);
+            this.flowLayoutPanelProduct.Size = new System.Drawing.Size(646, 371);
             this.flowLayoutPanelProduct.TabIndex = 5;
-            // 
-            // labelIsNOte
-            // 
-            this.labelIsNOte.AutoSize = true;
-            this.labelIsNOte.Location = new System.Drawing.Point(269, 28);
-            this.labelIsNOte.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelIsNOte.Name = "labelIsNOte";
-            this.labelIsNOte.Size = new System.Drawing.Size(112, 25);
-            this.labelIsNOte.TabIndex = 13;
-            this.labelIsNOte.Text = "Có ghi chú!";
             // 
             // frmPOS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1476, 794);
+            this.ClientSize = new System.Drawing.Size(1437, 676);
             this.Controls.Add(this.flowLayoutPanelProduct);
             this.Controls.Add(this.panelOrder);
             this.Controls.Add(this.flowLayoutPanelCategory);
@@ -427,7 +429,6 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmPOS_Load);
             this.panelTop.ResumeLayout(false);
-            this.panelTop.PerformLayout();
             this.panelInfo.ResumeLayout(false);
             this.panelInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCloseForm)).EndInit();
@@ -461,7 +462,7 @@
         private System.Windows.Forms.Label labelSendKitchen;
         private System.Windows.Forms.Label labelDinin;
         private System.Windows.Forms.Label labelTakeAway;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonCash;
         private System.Windows.Forms.Label labelList;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaSanPham;
         private System.Windows.Forms.DataGridViewTextBoxColumn STT;

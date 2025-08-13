@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.tabPageAddEdit = new System.Windows.Forms.TabPage();
+            this.buttonCancel = new System.Windows.Forms.Button();
             this.labelstatus = new System.Windows.Forms.Label();
             this.checkBoxOn = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,7 +45,6 @@
             this.panelData = new System.Windows.Forms.Panel();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.tabControlCategory = new System.Windows.Forms.TabControl();
-            this.buttonCancel = new System.Windows.Forms.Button();
             this.tabPageAddEdit.SuspendLayout();
             this.tabPageList.SuspendLayout();
             this.panelData.SuspendLayout();
@@ -70,6 +70,18 @@
             this.tabPageAddEdit.TabIndex = 1;
             this.tabPageAddEdit.Text = "Tạo mới ";
             this.tabPageAddEdit.UseVisualStyleBackColor = true;
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.buttonCancel.ForeColor = System.Drawing.Color.Black;
+            this.buttonCancel.Location = new System.Drawing.Point(469, 412);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(133, 49);
+            this.buttonCancel.TabIndex = 13;
+            this.buttonCancel.Text = "Hủy";
+            this.buttonCancel.UseVisualStyleBackColor = false;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // labelstatus
             // 
@@ -155,7 +167,7 @@
             this.tabPageList.Location = new System.Drawing.Point(4, 34);
             this.tabPageList.Name = "tabPageList";
             this.tabPageList.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageList.Size = new System.Drawing.Size(1233, 665);
+            this.tabPageList.Size = new System.Drawing.Size(1272, 712);
             this.tabPageList.TabIndex = 0;
             this.tabPageList.Text = "Danh sách";
             this.tabPageList.UseVisualStyleBackColor = true;
@@ -192,9 +204,9 @@
             // 
             this.panelData.Controls.Add(this.dataGridView);
             this.panelData.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelData.Location = new System.Drawing.Point(3, 171);
+            this.panelData.Location = new System.Drawing.Point(3, 218);
             this.panelData.Name = "panelData";
-            this.panelData.Size = new System.Drawing.Size(1227, 491);
+            this.panelData.Size = new System.Drawing.Size(1266, 491);
             this.panelData.TabIndex = 0;
             // 
             // dataGridView
@@ -206,34 +218,20 @@
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.RowTemplate.Height = 24;
-            this.dataGridView.Size = new System.Drawing.Size(1227, 491);
+            this.dataGridView.Size = new System.Drawing.Size(1266, 491);
             this.dataGridView.TabIndex = 0;
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 
             // tabControlCategory
             // 
-            this.tabControlCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControlCategory.Controls.Add(this.tabPageList);
             this.tabControlCategory.Controls.Add(this.tabPageAddEdit);
-            this.tabControlCategory.Location = new System.Drawing.Point(20, 28);
+            this.tabControlCategory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlCategory.Location = new System.Drawing.Point(0, 0);
             this.tabControlCategory.Name = "tabControlCategory";
             this.tabControlCategory.SelectedIndex = 0;
-            this.tabControlCategory.Size = new System.Drawing.Size(1241, 703);
+            this.tabControlCategory.Size = new System.Drawing.Size(1280, 750);
             this.tabControlCategory.TabIndex = 0;
-            // 
-            // buttonCancel
-            // 
-            this.buttonCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.buttonCancel.ForeColor = System.Drawing.Color.Black;
-            this.buttonCancel.Location = new System.Drawing.Point(469, 412);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(133, 49);
-            this.buttonCancel.TabIndex = 13;
-            this.buttonCancel.Text = "Hủy";
-            this.buttonCancel.UseVisualStyleBackColor = false;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // UserControlCategory
             // 

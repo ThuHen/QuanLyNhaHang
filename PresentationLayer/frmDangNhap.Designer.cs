@@ -67,7 +67,7 @@
             this.groupBoxLogin.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.groupBoxLogin.Name = "groupBoxLogin";
             this.groupBoxLogin.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.groupBoxLogin.Size = new System.Drawing.Size(429, 376);
+            this.groupBoxLogin.Size = new System.Drawing.Size(421, 376);
             this.groupBoxLogin.TabIndex = 0;
             this.groupBoxLogin.TabStop = false;
             // 
@@ -76,10 +76,10 @@
             this.pictureBoxHide.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxHide.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxHide.Image = global::PresentationLayer.Properties.Resources.icons8_hide_100;
-            this.pictureBoxHide.Location = new System.Drawing.Point(365, 175);
+            this.pictureBoxHide.Location = new System.Drawing.Point(354, 173);
             this.pictureBoxHide.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.pictureBoxHide.Name = "pictureBoxHide";
-            this.pictureBoxHide.Size = new System.Drawing.Size(38, 38);
+            this.pictureBoxHide.Size = new System.Drawing.Size(35, 35);
             this.pictureBoxHide.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxHide.TabIndex = 6;
             this.pictureBoxHide.TabStop = false;
@@ -92,10 +92,10 @@
             this.pictureBoxShow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxShow.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxShow.Image = global::PresentationLayer.Properties.Resources.icons8_eye_100;
-            this.pictureBoxShow.Location = new System.Drawing.Point(365, 174);
+            this.pictureBoxShow.Location = new System.Drawing.Point(354, 172);
             this.pictureBoxShow.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.pictureBoxShow.Name = "pictureBoxShow";
-            this.pictureBoxShow.Size = new System.Drawing.Size(38, 38);
+            this.pictureBoxShow.Size = new System.Drawing.Size(35, 35);
             this.pictureBoxShow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxShow.TabIndex = 5;
             this.pictureBoxShow.TabStop = false;
@@ -109,7 +109,7 @@
             this.buttonLogin.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
             this.buttonLogin.FlatAppearance.BorderSize = 3;
             this.buttonLogin.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.buttonLogin.Location = new System.Drawing.Point(29, 288);
+            this.buttonLogin.Location = new System.Drawing.Point(26, 286);
             this.buttonLogin.Margin = new System.Windows.Forms.Padding(2);
             this.buttonLogin.Name = "buttonLogin";
             this.buttonLogin.Size = new System.Drawing.Size(374, 60);
@@ -122,7 +122,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(139, 229);
+            this.label1.Location = new System.Drawing.Point(136, 227);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(152, 21);
@@ -131,7 +131,7 @@
             // 
             // textBoxPassword
             // 
-            this.textBoxPassword.Location = new System.Drawing.Point(29, 175);
+            this.textBoxPassword.Location = new System.Drawing.Point(26, 173);
             this.textBoxPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBoxPassword.Name = "textBoxPassword";
             this.textBoxPassword.Size = new System.Drawing.Size(326, 34);
@@ -143,7 +143,7 @@
             // 
             this.labelPassword.AutoSize = true;
             this.labelPassword.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPassword.Location = new System.Drawing.Point(24, 142);
+            this.labelPassword.Location = new System.Drawing.Point(21, 140);
             this.labelPassword.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.labelPassword.Name = "labelPassword";
             this.labelPassword.Size = new System.Drawing.Size(114, 27);
@@ -152,7 +152,7 @@
             // 
             // textBoxUsername
             // 
-            this.textBoxUsername.Location = new System.Drawing.Point(29, 66);
+            this.textBoxUsername.Location = new System.Drawing.Point(26, 64);
             this.textBoxUsername.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textBoxUsername.Name = "textBoxUsername";
             this.textBoxUsername.Size = new System.Drawing.Size(374, 34);
@@ -163,7 +163,7 @@
             // 
             this.lblUserName.AutoSize = true;
             this.lblUserName.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserName.Location = new System.Drawing.Point(24, 33);
+            this.lblUserName.Location = new System.Drawing.Point(21, 31);
             this.lblUserName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblUserName.Name = "lblUserName";
             this.lblUserName.Size = new System.Drawing.Size(180, 27);
@@ -179,7 +179,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(459, 56);
+            this.panel1.Size = new System.Drawing.Size(450, 50);
             this.panel1.TabIndex = 2;
             // 
             // pictureBoxMinimizeForm
@@ -188,7 +188,7 @@
             this.pictureBoxMinimizeForm.BackColor = System.Drawing.Color.DarkOrange;
             this.pictureBoxMinimizeForm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxMinimizeForm.Image = global::PresentationLayer.Properties.Resources.icons8_horizontal_line_64;
-            this.pictureBoxMinimizeForm.Location = new System.Drawing.Point(357, 11);
+            this.pictureBoxMinimizeForm.Location = new System.Drawing.Point(351, 7);
             this.pictureBoxMinimizeForm.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.pictureBoxMinimizeForm.Name = "pictureBoxMinimizeForm";
             this.pictureBoxMinimizeForm.Size = new System.Drawing.Size(37, 37);
@@ -203,7 +203,7 @@
             this.pictureBoxCloseForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxCloseForm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxCloseForm.Image = global::PresentationLayer.Properties.Resources.icons8_close_64;
-            this.pictureBoxCloseForm.Location = new System.Drawing.Point(405, 11);
+            this.pictureBoxCloseForm.Location = new System.Drawing.Point(398, 7);
             this.pictureBoxCloseForm.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.pictureBoxCloseForm.Name = "pictureBoxCloseForm";
             this.pictureBoxCloseForm.Size = new System.Drawing.Size(37, 37);
@@ -231,7 +231,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(459, 567);
+            this.ClientSize = new System.Drawing.Size(450, 570);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBoxLogin);

@@ -17,6 +17,7 @@ namespace TransferObject
         public string GhiChu { get; set; }
         public DateTime NgayTao { get; set; }
         public DateTime NgayCapNhat { get; set; }
+        public int MaDonHang { get; set; } 
 
         public Table() { }
         public Table( string tenBan, string viTri, int maTrangThai, int soChoNgoi, string ghiChu)

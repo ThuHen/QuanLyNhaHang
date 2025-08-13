@@ -10,7 +10,7 @@ namespace TransferObject
     {
         public int MaDonHang { get; set; }
         public string LoaiDonHang { get; set; }
-        public int MaTrangThai { get; set; }
+       
         public string TrangThai { get; set; }
         public string DaThanhToan { get; set; }
         public double TongTien { get; set; }
@@ -21,10 +21,10 @@ namespace TransferObject
         public string GhiChu { get; set; }
         public DateTime ThoiGian { get; set; }
 
-        public List<OrderDetails> Details { get; set; }
+        public List<OrderDetail> Details { get; set; }
         public Order()
         {
-            Details = new List<OrderDetails>();
+            Details = new List<OrderDetail>();
         }
         //save
         //public Order(string loaiDonHang, int maTrangThai, string daThanhToan, double tongTien, double tienNhan, double tienThua,

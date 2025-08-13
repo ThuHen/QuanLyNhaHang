@@ -33,18 +33,18 @@ namespace PresentationLayer
             LoadTrangThaiBan();
 
         }
-        
+
         private void LoadTrangThaiBan()
         {
             List<TableStatus> trangThaiBans = tableStatusBL.GetAllTableStatuses();
-            
+
             foreach (TableStatus trangThaiBan in trangThaiBans)
             {
                 // Tạo panel chứa 1 màu + 1 chú thích
                 Panel panel = new Panel();
                 panel.Width = 190;
                 panel.Height = 30;
-                panel.Margin = new Padding(5,30,0,0);
+                panel.Margin = new Padding(5, 30, 0, 0);
                 panel.BackColor = Color.Transparent;
                 //panel.BorderStyle = BorderStyle.FixedSingle;
 
@@ -55,7 +55,7 @@ namespace PresentationLayer
                 //labelColor.BorderStyle = BorderStyle.FixedSingle;
                 labelColor.AutoSize = false; // Không tự động điều chỉnh kích thước
                 labelColor.Margin = new Padding(0);
-                
+
                 switch (trangThaiBan.MaTrangThai)
                 {
                     case 1:
@@ -66,6 +66,8 @@ namespace PresentationLayer
                         break;
                     case 3:
                         labelColor.BackColor = Color.FromArgb(0, 192, 0); // Có khách
+
+
                         break;
                     case 4:
                         labelColor.BackColor = Color.Gray;
@@ -96,15 +98,31 @@ namespace PresentationLayer
             List<Table> tables = tableBL.GetAllTables();
             foreach (Table table in tables)
             {
-                var ucTable = new UserControlOneTable()
+                var ucTable = new UserControlOneTable();
+                if (table.MaDonHang != 0)
                 {
-                    MaBan = table.MaBan,
-                    TenBan= table.TenBan,
-                    SoLuongCho = table.SoChoNgoi
+                    ucTable = new UserControlOneTable()
+                    {
+                        MaBan = table.MaBan,
+                        TenBan = table.TenBan,
+                        SoLuongCho = table.SoChoNgoi,
+                        MaDonHang = table.MaDonHang // Hiển thị mã đơn hàng nếu có
+                    };
+                    ucTable.Enabled = false; // Nếu bàn đã có đơn hàng thì không cho chọn
+                }
+                else
+                {
+                    ucTable = new UserControlOneTable()
+                    {
+                        MaBan = table.MaBan,
+                        TenBan = table.TenBan,
+                        SoLuongCho = table.SoChoNgoi,
 
-                };
+                    };
+                }
+
                 ucTable.Margin = new Padding(10);
-                ucTable.BorderStyle = BorderStyle.FixedSingle;  
+                ucTable.BorderStyle = BorderStyle.FixedSingle;
                 // Thiết lập màu sắc theo trạng thái bàn
                 //de tam cai mau vao sau
                 switch (table.MaTrangThai)
@@ -113,7 +131,8 @@ namespace PresentationLayer
                         ucTable.BackColor = Color.FromArgb(225, 225, 225); // Available - white
                         break;
                     case 2:
-                        ucTable.BackColor = Color.FromArgb(255, 128, 0); // Reserved - cam
+                        ucTable.BackColor = Color.FromArgb(255, 192, 0); // Reserved 
+                        //ucTable.Enabled = false;
                         break;
                     case 3:
                         ucTable.BackColor = Color.FromArgb(0, 192, 0); // Occupied - xanh
@@ -125,7 +144,7 @@ namespace PresentationLayer
                 flowLayoutPanelTable.Controls.Add((ucTable));
 
                 ucTable.onSelect += (sender, e) =>
-                { 
+                {
                     SelectedTableId = ucTable.MaBan; // Lưu mã bàn được chọn
                     SelectedTableName = ucTable.TenBan; // Lưu tên bàn được chọn
                     this.DialogResult = DialogResult.OK; // Đặt kết quả của form là OK
@@ -134,8 +153,8 @@ namespace PresentationLayer
 
             }
         }
-        
-        
+
+
 
         private void panelChuThich_Paint(object sender, PaintEventArgs e)
         {

@@ -38,6 +38,17 @@ namespace BussinessLayer
                 throw ex;
             }
         }
+        public List<Product> GetListProductsForMenu()
+        {
+            try
+            {
+                return productDL.GetListProductsForMenu();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
         public int Add(Product product)
         {
             try

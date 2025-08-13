@@ -61,15 +61,13 @@
             // 
             // tabControlProduct
             // 
-            this.tabControlProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControlProduct.Controls.Add(this.tabPageList);
             this.tabControlProduct.Controls.Add(this.tabPageAddEdit);
-            this.tabControlProduct.Location = new System.Drawing.Point(21, 24);
+            this.tabControlProduct.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlProduct.Location = new System.Drawing.Point(0, 0);
             this.tabControlProduct.Name = "tabControlProduct";
             this.tabControlProduct.SelectedIndex = 0;
-            this.tabControlProduct.Size = new System.Drawing.Size(1029, 700);
+            this.tabControlProduct.Size = new System.Drawing.Size(1071, 740);
             this.tabControlProduct.TabIndex = 1;
             // 
             // tabPageList
@@ -82,7 +80,7 @@
             this.tabPageList.Location = new System.Drawing.Point(4, 34);
             this.tabPageList.Name = "tabPageList";
             this.tabPageList.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageList.Size = new System.Drawing.Size(1021, 662);
+            this.tabPageList.Size = new System.Drawing.Size(1063, 702);
             this.tabPageList.TabIndex = 0;
             this.tabPageList.Text = "Danh sách";
             this.tabPageList.UseVisualStyleBackColor = true;
@@ -119,9 +117,9 @@
             // 
             this.panelData.Controls.Add(this.dataGridView);
             this.panelData.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelData.Location = new System.Drawing.Point(3, 152);
+            this.panelData.Location = new System.Drawing.Point(3, 192);
             this.panelData.Name = "panelData";
-            this.panelData.Size = new System.Drawing.Size(1015, 507);
+            this.panelData.Size = new System.Drawing.Size(1057, 507);
             this.panelData.TabIndex = 0;
             // 
             // dataGridView
@@ -133,7 +131,7 @@
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.RowTemplate.Height = 24;
-            this.dataGridView.Size = new System.Drawing.Size(1015, 507);
+            this.dataGridView.Size = new System.Drawing.Size(1057, 507);
             this.dataGridView.TabIndex = 0;
             this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
             // 

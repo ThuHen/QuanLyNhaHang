@@ -15,9 +15,11 @@ namespace DataLayer
       
         public List<Table> GetAllTables()
         {   
-            string sql = "SELECT * FROM BanAn b inner join TrangThaiBan t on b.MaTrangThai = t.MaTrangThai";
+            string sql = "SELECT b.*, d.MaDonHang, t.TrangThai FROM BanAn b " +
+                "inner join TrangThaiBan t on b.MaTrangThai = t.MaTrangThai" +
+                " left join DonHang d on b.MaBan = d.MaBan ";
             string id, name, viTri, trangThai, ghiChu;
-            int soChoNgoi, maTrangThai;
+            int soChoNgoi, maTrangThai, maDonHang;
             DateTime ngayTao, ngayCapNhat;
             List<Table> tables = new List<Table>();
             try
@@ -35,7 +37,20 @@ namespace DataLayer
                     ghiChu = reader["GhiChu"].ToString();
                     ngayTao = Convert.ToDateTime(reader["NgayTao"]);
                     ngayCapNhat = Convert.ToDateTime(reader["NgayCapNhat"]);
-                    Table table = new Table(Convert.ToInt32(id), name, viTri,maTrangThai, trangThai, soChoNgoi, ghiChu, ngayTao, ngayCapNhat);
+                    maDonHang = reader["MaDonHang"] == DBNull.Value ? 0 : Convert.ToInt32(reader["MaDonHang"]);
+                    Table table = new Table
+                    {
+                        MaBan = Convert.ToInt32(id),
+                        TenBan = name,
+                        ViTri = viTri,
+                        MaTrangThai = maTrangThai,
+                        TrangThai = trangThai,
+                        SoChoNgoi = soChoNgoi,
+                        GhiChu = ghiChu,
+                        NgayTao = ngayTao,
+                        NgayCapNhat = ngayCapNhat,
+                        MaDonHang = maDonHang
+                    };
                     tables.Add(table);
                 }
                 reader.Close();

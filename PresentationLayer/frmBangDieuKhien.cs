@@ -18,10 +18,10 @@ namespace PresentationLayer
         }
         public void ShowCurrentTime()
         {
-            
+
             timer1.Interval = 1000; // mỗi 1 giây
             timer1.Tick += timer1_Tick;
-            timer1.Start();     
+            timer1.Start();
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -89,7 +89,7 @@ namespace PresentationLayer
 
         private void buttonPOS_Click(object sender, EventArgs e)
         {
-            Form frm = new frmPOS();
+            Form frm = new frmPOS(1);
             frm.Show();
             this.Hide();
         }
@@ -97,6 +97,36 @@ namespace PresentationLayer
         private void frmBangDieuKhien_Load(object sender, EventArgs e)
         {
             ShowCurrentTime();
+            //insertImgToButton(buttonTongQuan, Properties.Resources.icons8_chef_hat_100);
+            //insertImgToButton(buttonDanhMuc, Properties.Resources.icons8_chef_hat_100);
+            //insertImgToButton(buttonMonAn, Properties.Resources.icons8_chef_hat_100);
+            //insertImgToButton(buttonTable, Properties.Resources.icons8_chef_hat_100);
+            //insertImgToButton(buttonPOS, Properties.Resources.icons8_chef_hat_100);
+            //insertImgToButton(buttonLogout, Properties.Resources.icons8_chef_hat_100);
+        }
+        private Image resizeImage(Image img, int width, int height)
+        {
+            Bitmap bmp = new Bitmap(width, height);
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                g.DrawImage(img, 0, 0, width, height);
+            }
+            return bmp;
+        }
+        private void insertImgToButton(Button button, Image image)
+        {
+            button.Image = resizeImage(image, 20, 20);
+            button.TextImageRelation = TextImageRelation.ImageBeforeText;
+            button.ImageAlign = ContentAlignment.MiddleLeft;
+            button.TextAlign = ContentAlignment.MiddleCenter;
+        }
+
+        private void buttonKitchen_Click(object sender, EventArgs e)
+        {
+            Form form = new frmKitchen(1);
+            form.Show();
+            this.Hide();
         }
     }
 }

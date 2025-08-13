@@ -52,6 +52,18 @@
     <Compile Include="frmBangDieuKhien.Designer.cs">
       <DependentUpon>frmBangDieuKhien.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPayment.Designer.cs">
+      <DependentUpon>frmPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKitchen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKitchen.Designer.cs">
+      <DependentUpon>frmKitchen.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmListOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,10 +90,10 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\frmNoteOrder.cs">
+    <Compile Include="frmNoteOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Resources\frmNoteOrder.Designer.cs">
+    <Compile Include="frmNoteOrder.Designer.cs">
       <DependentUpon>frmNoteOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControlCategory.cs">
@@ -117,6 +129,12 @@
     <EmbeddedResource Include="frmBangDieuKhien.resx">
       <DependentUpon>frmBangDieuKhien.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPayment.resx">
+      <DependentUpon>frmPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKitchen.resx">
+      <DependentUpon>frmKitchen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmListOrder.resx">
       <DependentUpon>frmListOrder.cs</DependentUpon>
     </EmbeddedResource>
@@ -139,7 +157,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Resources\frmNoteOrder.resx">
+    <EmbeddedResource Include="frmNoteOrder.resx">
       <DependentUpon>frmNoteOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlCategory.resx">
@@ -212,6 +230,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-restaurant-641.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-chef-hat-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-chef-hat-50 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-service-bell-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-save-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-restaurant-table-100.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

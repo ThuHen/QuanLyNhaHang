@@ -96,6 +96,52 @@ namespace DataLayer
                 Disconnect();
             }
         }
+        public List<Product> GetListProductsForMenu()
+        {
+            string sql = "SELECT * FROM SanPham sp INNER JOIN DanhMuc dm ON sp.MaDanhMuc = dm.MaDanhMuc " +
+                "where sp.TrangThai = 1 and dm.TrangThai = 1";
+
+            List<Product> ListProduct = new List<Product>();
+            try
+            {
+                Connect();
+                SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);
+                while (reader.Read())
+                {
+
+
+                    string id = reader["MaSanPham"].ToString();
+                    string name = reader["TenSanPham"].ToString();
+                    string price = reader["GiaSanPham"].ToString();
+                    string categoryId = reader["MaDanhMuc"].ToString();
+                    string categoryName = reader["TenDanhMuc"].ToString();
+                    string motasanpham = reader["MoTa"].ToString();
+                    int trangThai = Convert.ToInt32(reader["TrangThai"]);
+
+                    byte[] image = null; // khởi tạo null
+
+                    if (!reader.IsDBNull(reader.GetOrdinal("HinhAnh")))
+                    {
+                        image = (byte[])reader["HinhAnh"];
+                    }
+
+
+                    Product product = new Product(int.Parse(id), name, double.Parse(price),
+                        int.Parse(categoryId), categoryName, motasanpham, trangThai, image);
+                    ListProduct.Add(product);
+                }
+                reader.Close();
+                return ListProduct;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Disconnect();
+            }
+        }
         public int Add(Product product)
         {
             string sql = "INSERT INTO SanPham (TenSanPham, GiaSanPham, MaDanhMuc,MoTa,TrangThai, HinhAnh) " +

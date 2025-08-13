@@ -16,14 +16,18 @@ namespace DataLayer
     {
         public int InsertOrder(Order order)
         {
-            string query = @"INSERT INTO DonHang (LoaiDonHang, MaTrangThai, DaThanhToan, TongTien, TienNhan, TienThua, MaBan, GhiChu,ThoiGian)
+            if(order.MaBan != 0&&order.MaBan!=null)
+            {
+                ChangeStatusTable(order.MaBan.Value);
+            }
+            string query = @"INSERT INTO DonHang (LoaiDonHang, TrangThai, DaThanhToan, TongTien, TienNhan, TienThua, MaBan, GhiChu,ThoiGian)
                              VALUES (@OrderType, @Status,@Payment, @Total, @Received, @Change, @TableID,@Note, @Time);
                              SELECT SCOPE_IDENTITY();";
 
             List<SqlParameter> parameters = new List<SqlParameter>
             {
                 new SqlParameter("@OrderType", order.LoaiDonHang),
-                new SqlParameter("@Status", order.MaTrangThai),
+                new SqlParameter("@Status", order.TrangThai),
                 new SqlParameter("@Payment", order.DaThanhToan),
                 new SqlParameter("@Total", order.TongTien),
                 new SqlParameter("@Received", order.TienNhan),
@@ -42,7 +46,16 @@ namespace DataLayer
             }
             return orderID;
         }
-        private void InsertOrderDetail(OrderDetails detail, int orderID)
+        private int ChangeStatusTable(int tableId)
+        {
+            string query = @"UPDATE BanAn SET MaTrangThai = 2 WHERE MaBan = @TableID";
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@TableID", tableId)
+            };
+            return MyExcuteNonQuery(query, CommandType.Text, parameters);
+        }
+        private void InsertOrderDetail(OrderDetail detail, int orderID)
         {
             string query = @"INSERT INTO ChiTietDonHang (MaDonHang,MaSanPham,SoLuong)
                              VALUES (@OrderID, @ProID, @Qty);";
@@ -117,58 +130,55 @@ namespace DataLayer
 
         public List<Order> GetListOrders()
         {
-            //WHERE MaTrangThai <> 3"; // Giả sử 3 là mã trạng thái 'Complete'
+           
             string sql = @"
             SELECT MaDonHang, LoaiDonHang, ThoiGian, TrangThai, DaThanhToan, d.MaBan, TenBan  
             FROM DonHang d
-            INNER JOIN TrangThaiDonHang t ON d.MaTrangThai = t.MaTrangThai
             LEFT JOIN BanAn b ON d.MaBan = b.MaBan";
 
             List<Order> orders = new List<Order>();
-
-
             try
             {
+
+                Connect();
+                SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);
+
+                while (reader.Read())
                 {
-                    Connect();
-                    SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);
-
-                    while (reader.Read())
+                    int MaDonHang = Convert.ToInt32(reader["MaDonHang"]);
+                    string LoaiDonHang = reader["LoaiDonHang"].ToString();
+                    DateTime ThoiGian = Convert.ToDateTime(reader["ThoiGian"]);
+                    
+                    string TrangThai = reader["TrangThai"].ToString();
+                    string DaThanhToan = reader["DaThanhToan"].ToString();
+                    int? MaBan = reader["MaBan"] != DBNull.Value ? Convert.ToInt32(reader["MaBan"]) : (int?)null;
+                    string TenBan;
+                    if (MaBan != null)
                     {
-                        int MaDonHang = Convert.ToInt32(reader["MaDonHang"]);
-                        string LoaiDonHang = reader["LoaiDonHang"].ToString();
-                        DateTime ThoiGian = Convert.ToDateTime(reader["ThoiGian"]);
-                        //int MaTrangThai = Convert.ToInt32(reader["MaTrangThai"]);
-                        string TrangThai = reader["TrangThai"].ToString();
-                        string DaThanhToan = reader["DaThanhToan"].ToString();
-                        int? MaBan = reader["MaBan"] != DBNull.Value ? Convert.ToInt32(reader["MaBan"]) : (int?)null;
-                        string TenBan;
-                        if (MaBan != null)
-                        {
-                            TenBan = reader["TenBan"].ToString();
-                        }
-                        else
-                        {
-                            TenBan = " ";
-                        }
-
-
-
-                        Order order = new Order
-                        {
-                            MaDonHang = MaDonHang,
-                            LoaiDonHang = LoaiDonHang,
-                            //MaTrangThai = MaTrangThai,
-                            TrangThai = TrangThai,
-                            DaThanhToan = DaThanhToan,
-                            ThoiGian = ThoiGian,
-                            TenBan = TenBan
-                        };
-                        orders.Add(order);
+                        TenBan = reader["TenBan"].ToString();
                     }
-                    reader.Close();
-                    return orders;
+                    else
+                    {
+                        TenBan = " ";
+                    }
+
+
+
+                    Order order = new Order
+                    {
+                        MaDonHang = MaDonHang,
+                        LoaiDonHang = LoaiDonHang,
+                       
+                        TrangThai = TrangThai,
+                        DaThanhToan = DaThanhToan,
+                        ThoiGian = ThoiGian,
+                        TenBan = TenBan
+                    };
+                    orders.Add(order);
                 }
+                reader.Close();
+                return orders;
+
             }
             catch (SqlException ex)
             {
@@ -178,6 +188,129 @@ namespace DataLayer
             {
                 Disconnect(); // Đóng kết nối
             }
+        }
+        public Order GetOrderById(int orderId)
+        {
+            string sql = "SELECT * FROM DonHang WHERE MaDonHang = @id";
+            List<SqlParameter> parameters = new List<SqlParameter>
+                {
+                    new SqlParameter("@id", orderId)
+                };
+            Order order = null;
+            try
+            {
+                Connect();
+                SqlDataReader reader = MyExecuteReader(sql, CommandType.Text, parameters);
+                if (reader.Read())
+                {
+                    order = new Order
+                    {
+                        MaDonHang = Convert.ToInt32(reader["MaDonHang"]),
+                        LoaiDonHang = reader["LoaiDonHang"].ToString(),
+                        DaThanhToan = reader["DaThanhToan"].ToString(),
+                        //TongTien = Convert.ToDouble(reader["TongTien"]),
+                        //TienNhan = Convert.ToDouble(reader["TienNhan"]),
+                        //TienThua = Convert.ToDouble(reader["TienThua"]),
+                        MaBan = reader["MaBan"] != DBNull.Value ? Convert.ToInt32(reader["MaBan"]) : (int?)null,
+                        GhiChu = reader["GhiChu"].ToString(),
+                        //ThoiGian = Convert.ToDateTime(reader["ThoiGian"]),
+
+
+                    };
+
+
+                }
+                reader.Close();
+                order.Details = GetOrderDetails(orderId);
+                return order;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Disconnect();
+            }
+        }
+        public List<OrderDetail> GetOrderDetails(int orderID)
+        {
+            string sql = @"Select 
+                            MaChiTietDonHang, ChiTietDonHang.MaSanPham,SoLuong, TenSanPham,GiaSanPham
+                            FROM ChiTietDonHang 
+                            inner join SanPham 
+                            on ChiTietDonHang.MaSanPham = SanPham.MaSanPham
+                            WHERE MaDonHang = @OrderID";
+
+            List<SqlParameter> parameters = new List<SqlParameter>
+                {
+                new SqlParameter("@OrderID", orderID)
+            };
+            Connect();
+            SqlDataReader reader = MyExecuteReader(sql, CommandType.Text, parameters);
+            List<OrderDetail> orderDetails = new List<OrderDetail>();
+            while (reader.Read())
+            {
+                OrderDetail details = new OrderDetail
+                {
+                    MaChiTietDonHang = Convert.ToInt32(reader["MaChiTietDonHang"]),
+                    MaSanPham = Convert.ToInt32(reader["MaSanPham"]),
+                    SoLuong = Convert.ToInt32(reader["SoLuong"]),
+                    TenSanPham = reader["TenSanPham"].ToString(),
+                    GiaSanPham = Convert.ToDouble(reader["GiaSanPham"]),
+
+
+                };
+                orderDetails.Add(details);
+            }
+            reader.Close();
+            Disconnect();
+            return orderDetails;
+        }
+
+        public int UpdatePayment(int orderId, double Total, double Received, double Change)
+        {
+            string sql = @"UPDATE DonHang 
+                           SET TongTien = @Total, 
+                               TienNhan = @rec, 
+                               TienThua = @Change ,
+                               DaThanhToan = N'Đã thanh toán'
+                               WHERE MaDonHang = @id";
+            List<SqlParameter> parameters = new List<SqlParameter>
+                {
+                    new SqlParameter("@Total", Total),
+                    new SqlParameter("@rec", Received),
+                    new SqlParameter("@Change", Change),
+                    new SqlParameter("@id", orderId)
+                };
+            try
+            {
+                Connect();
+                int row = MyExcuteNonQuery(sql, CommandType.Text, parameters);
+                return row;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Disconnect();
+            }
+        }
+
+
+        public void MarkStatusOrder(int maDonHang, string trangThai)
+        {
+            string sql = "UPDATE DonHang SET TrangThai = @TrangThai WHERE MaDonHang = @MainID";
+            List<SqlParameter> parameters = new List<SqlParameter>
+
+            {
+                new SqlParameter("@TrangThai", trangThai),
+                new SqlParameter("@MainID", maDonHang)
+            };
+            
+            MyExcuteNonQuery(sql, CommandType.Text, parameters);
         }
         //    public List<Order> GetKitchenOrders()
         //    {
@@ -262,43 +395,9 @@ namespace DataLayer
         //        }
         //    }
 
-        //    public void MarkOrderAsComplete(int mainId)
-        //    {
-        //        string sql = "UPDATE tblMain SET Status = 'Complete' WHERE MainID = @MainID";
 
-        //        List<SqlParameter> parameters = new List<SqlParameter>
-        //{
-        //    new SqlParameter("@MainID", mainId)
-        //};
 
-        //        MyExcuteNonQuery(sql, CommandType.Text, parameters);
-        //    }
 
-        //    public bool UpdatePayment(int mainID, decimal Total, decimal Received, decimal Change)
-        //    {
-        //        string sql = @"UPDATE tblMain SET Total = @Total, Received = @rec, Change = @Change, Status='Paid' WHERE MainID = @id";
-        //        List<SqlParameter> parameters = new List<SqlParameter>
-        //        {
-        //            new SqlParameter("@Total", Total),
-        //            new SqlParameter("@rec", Received),
-        //            new SqlParameter("@Change", Change),
-        //            new SqlParameter("@id", mainID)
-        //        };
-        //        try
-        //        {
-        //            Connect();
-        //            int row = MyExcuteNonQuery(sql, CommandType.Text, parameters);
-        //            return row > 0;
-        //        }
-        //        catch (SqlException ex)
-        //        {
-        //            throw ex;
-        //        }
-        //        finally
-        //        {
-        //            Disconnect();
-        //        }
-        //    }
         //    public string GetOrderType(int mainId)
         //    {
         //        string sql = "SELECT OrderType FROM tblMain WHERE MainID = @MainID";
@@ -322,52 +421,7 @@ namespace DataLayer
         //        }
         //    }
 
-        //    public Order GetOrder(int mainID)
-        //    {
-        //        string sql = "SELECT * FROM tblMain WHERE MainID = @MainID";
-        //        List<SqlParameter> parameters = new List<SqlParameter>
-        //        {
-        //            new SqlParameter("@MainID", mainID)
-        //        };
-        //        Order order = null;
-        //        try
-        //        {
-        //            Connect();
-        //            SqlDataReader reader = MyExecuteReader(sql, CommandType.Text, parameters);
-        //            if (reader.Read())
-        //            {
-        //                order = new Order
-        //                {
-        //                    MainID = Convert.ToInt32(reader["MainID"]),
-        //                    Date = Convert.ToDateTime(reader["Date"]),
-        //                    Time = reader["Time"].ToString(),
-        //                    TableName = reader["TableName"].ToString(),
-        //                    WaiterName = reader["WaiterName"].ToString(),
-        //                    Status = reader["Status"].ToString(),
-        //                    OrderType = reader["OrderType"].ToString(),
-        //                    Total = Convert.ToDouble(reader["Total"]),
-        //                    Received = Convert.ToDouble(reader["Received"]),
-        //                    Change = Convert.ToDouble(reader["Change"]),
-        //                    DriverID = Convert.ToInt32(reader["DriverID"]),
-        //                    CusName = reader["CusName"].ToString(),
-        //                    CusPhone = reader["CusPhone"].ToString()
-        //                };
 
-
-        //            }
-        //            return order;
-        //        }
-        //        catch (SqlException ex)
-        //        {
-        //            throw ex;
-        //        }
-        //        finally
-        //        {
-        //            Disconnect();
-        //        }
-
-
-        //    }
 
         //    public List<FullBillDetail> GetFullBillDetails(int mainId)
         //    {

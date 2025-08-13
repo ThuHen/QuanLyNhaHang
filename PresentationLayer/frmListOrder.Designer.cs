@@ -38,13 +38,14 @@
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.radioButtonAll = new System.Windows.Forms.RadioButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.ThoiGian = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MaDonHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenBan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LoaiDonHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ThoiGian = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DaThanhToan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.print = new System.Windows.Forms.DataGridViewImageColumn();
+            this.LoaiDonHang = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Edit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ColPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCloseForm)).BeginInit();
             this.panelFilter.SuspendLayout();
@@ -162,23 +163,34 @@
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ThoiGian,
             this.MaDonHang,
             this.TenBan,
-            this.LoaiDonHang,
-            this.ThoiGian,
             this.TrangThai,
             this.DaThanhToan,
-            this.print});
+            this.LoaiDonHang,
+            this.Edit,
+            this.ColPrint});
             this.dataGridView1.GridColor = System.Drawing.SystemColors.GrayText;
             this.dataGridView1.Location = new System.Drawing.Point(12, 148);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1176, 543);
             this.dataGridView1.TabIndex = 6;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // ThoiGian
+            // 
+            this.ThoiGian.HeaderText = "Thời gian";
+            this.ThoiGian.MinimumWidth = 6;
+            this.ThoiGian.Name = "ThoiGian";
+            this.ThoiGian.ReadOnly = true;
+            this.ThoiGian.Width = 260;
             // 
             // MaDonHang
             // 
@@ -196,22 +208,6 @@
             this.TenBan.ReadOnly = true;
             this.TenBan.Width = 125;
             // 
-            // LoaiDonHang
-            // 
-            this.LoaiDonHang.HeaderText = "Loại đơn hàng";
-            this.LoaiDonHang.MinimumWidth = 6;
-            this.LoaiDonHang.Name = "LoaiDonHang";
-            this.LoaiDonHang.ReadOnly = true;
-            this.LoaiDonHang.Width = 125;
-            // 
-            // ThoiGian
-            // 
-            this.ThoiGian.HeaderText = "Thời gian";
-            this.ThoiGian.MinimumWidth = 6;
-            this.ThoiGian.Name = "ThoiGian";
-            this.ThoiGian.ReadOnly = true;
-            this.ThoiGian.Width = 260;
-            // 
             // TrangThai
             // 
             this.TrangThai.HeaderText = "Trạng thái";
@@ -228,13 +224,29 @@
             this.DaThanhToan.ReadOnly = true;
             this.DaThanhToan.Width = 150;
             // 
-            // print
+            // LoaiDonHang
             // 
-            this.print.HeaderText = "Print";
-            this.print.MinimumWidth = 6;
-            this.print.Name = "print";
-            this.print.ReadOnly = true;
-            this.print.Width = 50;
+            this.LoaiDonHang.HeaderText = "Loại đơn hàng";
+            this.LoaiDonHang.MinimumWidth = 6;
+            this.LoaiDonHang.Name = "LoaiDonHang";
+            this.LoaiDonHang.ReadOnly = true;
+            this.LoaiDonHang.Width = 125;
+            // 
+            // Edit
+            // 
+            this.Edit.HeaderText = "";
+            this.Edit.MinimumWidth = 6;
+            this.Edit.Name = "Edit";
+            this.Edit.ReadOnly = true;
+            this.Edit.Width = 125;
+            // 
+            // ColPrint
+            // 
+            this.ColPrint.HeaderText = "In";
+            this.ColPrint.MinimumWidth = 6;
+            this.ColPrint.Name = "ColPrint";
+            this.ColPrint.ReadOnly = true;
+            this.ColPrint.Width = 125;
             // 
             // frmListOrder
             // 
@@ -273,12 +285,13 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButtonAll;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ThoiGian;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaDonHang;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenBan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LoaiDonHang;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ThoiGian;
         private System.Windows.Forms.DataGridViewTextBoxColumn TrangThai;
         private System.Windows.Forms.DataGridViewTextBoxColumn DaThanhToan;
-        private System.Windows.Forms.DataGridViewImageColumn print;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LoaiDonHang;
+        private System.Windows.Forms.DataGridViewImageColumn Edit;
+        private System.Windows.Forms.DataGridViewImageColumn ColPrint;
     }
 }
