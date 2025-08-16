@@ -83,7 +83,7 @@ namespace PresentationLayer
             }
             else if (col == printColumnIndex)
             {
-                // Xử lý in hoa don
+                // Xử lý in hoa do
                 Print(id);
             }
         }

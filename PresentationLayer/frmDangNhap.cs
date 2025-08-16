@@ -20,7 +20,11 @@ namespace PresentationLayer
         {
             InitializeComponent();
             accountBL = new AccountBL();
-           
+            
+            buttonLogin.FlatStyle = FlatStyle.Flat; // Đặt kiểu phẳng cho nút đăng nhập
+            buttonLogin.FlatAppearance.BorderSize = 0;
+
+
         }
 
         private Account ValidateLogin(string username, string password)
@@ -114,6 +118,13 @@ namespace PresentationLayer
         private void pictureBoxMinimizeForm_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
-        }     
+        }
+
+        private void frmDangNhap_Load(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }
