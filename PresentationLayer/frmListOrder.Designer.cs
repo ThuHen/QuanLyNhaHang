@@ -61,7 +61,7 @@
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1200, 50);
+            this.panelTop.Size = new System.Drawing.Size(1054, 50);
             this.panelTop.TabIndex = 4;
             // 
             // pictureBoxClose
@@ -69,7 +69,7 @@
             this.pictureBoxClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxClose.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxClose.Image = global::PresentationLayer.Properties.Resources.icons8_close_window_26;
-            this.pictureBoxClose.Location = new System.Drawing.Point(1149, 9);
+            this.pictureBoxClose.Location = new System.Drawing.Point(1003, 9);
             this.pictureBoxClose.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.pictureBoxClose.Name = "pictureBoxClose";
             this.pictureBoxClose.Size = new System.Drawing.Size(37, 37);
@@ -97,7 +97,7 @@
             this.panelFilter.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelFilter.Location = new System.Drawing.Point(0, 50);
             this.panelFilter.Name = "panelFilter";
-            this.panelFilter.Size = new System.Drawing.Size(1200, 50);
+            this.panelFilter.Size = new System.Drawing.Size(1054, 50);
             this.panelFilter.TabIndex = 5;
             // 
             // groupBox1
@@ -109,7 +109,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1200, 50);
+            this.groupBox1.Size = new System.Drawing.Size(1054, 50);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             // 
@@ -180,7 +180,7 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1176, 568);
+            this.dataGridView1.Size = new System.Drawing.Size(1030, 570);
             this.dataGridView1.TabIndex = 6;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -190,7 +190,7 @@
             this.ThoiGian.MinimumWidth = 6;
             this.ThoiGian.Name = "ThoiGian";
             this.ThoiGian.ReadOnly = true;
-            this.ThoiGian.Width = 260;
+            this.ThoiGian.Width = 210;
             // 
             // MaDonHang
             // 
@@ -230,7 +230,7 @@
             this.LoaiDonHang.MinimumWidth = 6;
             this.LoaiDonHang.Name = "LoaiDonHang";
             this.LoaiDonHang.ReadOnly = true;
-            this.LoaiDonHang.Width = 125;
+            this.LoaiDonHang.Width = 150;
             // 
             // Edit
             // 
@@ -239,22 +239,22 @@
             this.Edit.MinimumWidth = 6;
             this.Edit.Name = "Edit";
             this.Edit.ReadOnly = true;
-            this.Edit.Width = 125;
+            this.Edit.Width = 60;
             // 
             // ColPrint
             // 
-            this.ColPrint.HeaderText = "In";
+            this.ColPrint.HeaderText = "";
             this.ColPrint.Image = global::PresentationLayer.Properties.Resources.icons8_trash_30;
             this.ColPrint.MinimumWidth = 6;
             this.ColPrint.Name = "ColPrint";
             this.ColPrint.ReadOnly = true;
-            this.ColPrint.Width = 125;
+            this.ColPrint.Width = 60;
             // 
             // frmListOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1200, 703);
+            this.ClientSize = new System.Drawing.Size(1054, 699);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panelFilter);
             this.Controls.Add(this.panelTop);

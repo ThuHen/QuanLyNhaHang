@@ -75,38 +75,6 @@ namespace PresentationLayer
                 pictureBoxImage.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                 imageByteArray = ms.ToArray();
             }
-
-            //// Tạo GroupBox
-            //GroupBox groupBox = new GroupBox();
-            //groupBox.Text = "Danh mục sản phẩm";
-            //groupBox.Width = 200;
-            //groupBox.Height = 30 + categoryList.Count * 30;
-            //groupBox.Location = new Point(10, 10);
-
-            //// Tạo FlowLayoutPanel
-            //FlowLayoutPanel flowPanel = new FlowLayoutPanel();
-            //flowPanel.Dock = DockStyle.Fill;
-            //flowPanel.FlowDirection = FlowDirection.LeftToRight; // xếp ngang
-            //flowPanel.WrapContents = true; // tự xuống dòng nếu hết chỗ
-            //flowPanel.AutoScroll = true;
-
-            //// Thêm RadioButton vào GroupBox
-            //int y = 20;
-            //foreach (var cat in categoryList.OrderBy(c => c.TenDanhMuc).ToList())
-            //{
-            //    RadioButton rb = new RadioButton();
-            //    rb.Text = cat.TenDanhMuc;
-            //    rb.Location = new Point(10, y);
-            //    rb.AutoSize = true;
-            //    groupBox.Controls.Add(rb);
-            //    y += 25;
-            //}
-
-            //// Add flowPanel vào groupBox
-            //groupBox.Controls.Add(flowPanel);
-
-            //// Add groupBox vào panel chính
-            //panel1.Controls.Add(groupBox);
         }
         private void SetupColumns()
         {

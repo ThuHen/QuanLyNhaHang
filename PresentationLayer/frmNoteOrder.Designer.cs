@@ -31,19 +31,21 @@
             this.panelTop = new System.Windows.Forms.Panel();
             this.labelNote = new System.Windows.Forms.Label();
             this.panelBottom = new System.Windows.Forms.Panel();
-            this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonSave = new System.Windows.Forms.Button();
             this.panelLeft = new System.Windows.Forms.Panel();
             this.panelRight = new System.Windows.Forms.Panel();
             this.panelTop2 = new System.Windows.Forms.Panel();
             this.textBoxNoteOrder = new System.Windows.Forms.TextBox();
+            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.panelTop.SuspendLayout();
             this.panelBottom.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.panelTop.Controls.Add(this.pictureBoxClose);
             this.panelTop.Controls.Add(this.labelNote);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
@@ -64,7 +66,6 @@
             // 
             // panelBottom
             // 
-            this.panelBottom.Controls.Add(this.buttonCancel);
             this.panelBottom.Controls.Add(this.buttonSave);
             this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelBottom.Location = new System.Drawing.Point(0, 370);
@@ -72,23 +73,11 @@
             this.panelBottom.Size = new System.Drawing.Size(650, 80);
             this.panelBottom.TabIndex = 4;
             // 
-            // buttonCancel
-            // 
-            this.buttonCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.buttonCancel.ForeColor = System.Drawing.Color.Black;
-            this.buttonCancel.Location = new System.Drawing.Point(341, 3);
-            this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(133, 49);
-            this.buttonCancel.TabIndex = 20;
-            this.buttonCancel.Text = "Hủy";
-            this.buttonCancel.UseVisualStyleBackColor = false;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
-            // 
             // buttonSave
             // 
             this.buttonSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.buttonSave.ForeColor = System.Drawing.Color.Black;
-            this.buttonSave.Location = new System.Drawing.Point(160, 3);
+            this.buttonSave.Location = new System.Drawing.Point(255, 8);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(133, 49);
             this.buttonSave.TabIndex = 19;
@@ -130,6 +119,20 @@
             this.textBoxNoteOrder.Size = new System.Drawing.Size(570, 280);
             this.textBoxNoteOrder.TabIndex = 8;
             // 
+            // pictureBoxClose
+            // 
+            this.pictureBoxClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxClose.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxClose.Image = global::PresentationLayer.Properties.Resources.icons8_close_window_26;
+            this.pictureBoxClose.Location = new System.Drawing.Point(599, 6);
+            this.pictureBoxClose.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.pictureBoxClose.Name = "pictureBoxClose";
+            this.pictureBoxClose.Size = new System.Drawing.Size(37, 37);
+            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxClose.TabIndex = 15;
+            this.pictureBoxClose.TabStop = false;
+            this.pictureBoxClose.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
             // frmNoteOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -150,6 +153,7 @@
             this.Load += new System.EventHandler(this.frmNoteOrder_Load);
             this.panelTop.ResumeLayout(false);
             this.panelBottom.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,11 +164,11 @@
         private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Label labelNote;
         private System.Windows.Forms.Panel panelBottom;
-        private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Panel panelLeft;
         private System.Windows.Forms.Panel panelRight;
         private System.Windows.Forms.Panel panelTop2;
         private System.Windows.Forms.TextBox textBoxNoteOrder;
+        private System.Windows.Forms.PictureBox pictureBoxClose;
     }
 }

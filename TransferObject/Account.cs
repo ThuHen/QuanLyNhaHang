@@ -12,6 +12,6 @@ namespace TransferObject
         public string TenDangNhap { get; set; }
         public string MatKhau { get; set; }
         public int MaPhanQuyen { get; set; } // 1 = Admin, 2 = Cashier, 3 = Kitchen, 4 = Manager
- 
+        public Account() { }
     }
 }

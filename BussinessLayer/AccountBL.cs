@@ -27,5 +27,50 @@ namespace BussinessLayer
                 throw ex;
             }
         }
+        public List<Account> GetAllAccount()
+        {
+            try
+            {
+                return accountDL.GetAllAccount();
+            }
+            catch (SqlException ex)
+            {
+
+                throw ex;
+            }
+        }
+        public int Add(Account account)
+        {
+            try
+            {
+                return accountDL.Add(account);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+        public void Del(string id)
+        {
+            try
+            {
+                accountDL.Del(id);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+        public void Edit(string id, Account account)
+        {
+            try
+            {
+                accountDL.Edit(id, account);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -212,13 +212,13 @@ namespace PresentationLayer
         private void labelDinin_Click(object sender, EventArgs e)
         {
             orderType = "Ăn tại bàn";
-            Form form = new frmSelectTable();
-
-            if (form.ShowDialog() == DialogResult.OK)
+            using (frmSelectTable form = new frmSelectTable())
             {
-                maBan = ((frmSelectTable)form).SelectedTableId;
-                tenBan = ((frmSelectTable)form).SelectedTableName;
-
+                if (FormHelper.ShowDialogWithOverlay(this, form) == DialogResult.OK)
+                {
+                    maBan = form.SelectedTableId;
+                    tenBan = form.SelectedTableName;
+                }
             }
             if (maBan != 0)
             {
@@ -295,95 +295,94 @@ namespace PresentationLayer
         }
         private void labelNote_Click(object sender, EventArgs e)
         {
-            Form form = new frmNoteOrder();
-            ((frmNoteOrder)form).note = ghiChuOrder; // Truyền ghi chú hiện tại vào form ghi chú
-            if (form.ShowDialog() == DialogResult.OK)
+            using (frmNoteOrder form = new frmNoteOrder())
             {
-                ghiChuOrder = ((frmNoteOrder)form).note;
-            }
-
-
-            if (ghiChuOrder != "")
-            {
-
-                labelIsNOte.Visible = true;
-            }
-            else
-            {
-                labelIsNOte.Visible = false;
+                form.note = ghiChuOrder; // Truyền ghi chú hiện tại vào form ghi chú
+                if (FormHelper.ShowDialogWithOverlay(this, form) == DialogResult.OK)
+                {
+                    ghiChuOrder = ((frmNoteOrder)form).note;
+                }
+                if (ghiChuOrder != "")
+                {
+                    labelIsNOte.Visible = true;
+                }
+                else
+                {
+                    labelIsNOte.Visible = false;
+                }
             }
         }
         private void labelList_Click(object sender, EventArgs e)
         {
-            Form form = new frmListOrder();
-            if (form.ShowDialog() == DialogResult.OK)
+            using (frmListOrder form = new frmListOrder())
             {
-                enableButtons(false); // Vô hiệu hóa các nút khi đang xem danh sách đơn hàng
-                buttonCash.Visible = true; // Hiển thị nút thanh toán
-
-                selectedOrder = ((frmListOrder)form).maDonHang; // Lấy mã đơn hàng đã chọn từ frmListOrder
-                if (selectedOrder != 0)
+                if (FormHelper.ShowDialogWithOverlay(this, form) == DialogResult.OK)
                 {
-                    OrderBL orderBL = new OrderBL();
-                    Order order = orderBL.GetOrderById(selectedOrder);
-
-                    if (order != null)
+                    enableButtons(false); // Vô hiệu hóa các nút khi đang xem danh sách đơn hàng
+                    buttonCash.Visible = true; // Hiển thị nút thanh toán
+                    selectedOrder = ((frmListOrder)form).maDonHang; // Lấy mã đơn hàng đã chọn từ frmListOrder
+                    if (selectedOrder != 0)// edit-thanh toan
                     {
-                        dataGridView.Rows.Clear();
-                        foreach (var detail in order.Details)
+                        OrderBL orderBL = new OrderBL();
+                        Order order = orderBL.GetOrderById(selectedOrder);
+                        if (order != null)
                         {
+                            dataGridView.Rows.Clear();
+                            foreach (var detail in order.Details)
+                            {
 
-                            int stt = dataGridView.Rows.Count + 1;
-                            Image hinhDelete = Properties.Resources.icons8_trash_30;
-                            dataGridView.Rows.Add(new object[] { detail.MaSanPham, stt, detail.TenSanPham, detail.GiaSanPham, detail.SoLuong, detail.SoLuong * detail.GiaSanPham, hinhDelete });
+                                int stt = dataGridView.Rows.Count + 1;
+                                Image hinhDelete = Properties.Resources.icons8_trash_30;
+                                dataGridView.Rows.Add(new object[] { detail.MaSanPham, stt, detail.TenSanPham, detail.GiaSanPham, detail.SoLuong, detail.SoLuong * detail.GiaSanPham, hinhDelete });
 
-                        }
-                        GetTotal();
+                            }
+                            GetTotal();
 
-                        if (order.MaBan != null)
-                        {
-                            maBan = order.MaBan.Value; // Chuyển đổi từ int? sang int
-                            tenBan = order.TenBan;
-                        }
+                            if (order.MaBan != null)
+                            {
+                                maBan = order.MaBan.Value; // Chuyển đổi từ int? sang int
+                                tenBan = order.TenBan;
+                            }
 
-                        if (maBan != 0)
-                        {
-                            labelTable.Text = order.TenBan;
-                            labelTable.Visible = true;
-                            panelInfo.Visible = true;
+                            if (maBan != 0)
+                            {
+                                labelTable.Text = order.TenBan;
+                                labelTable.Visible = true;
+                                panelInfo.Visible = true;
+                            }
+                            else
+                            {
+                                labelTable.Text = orderType;
+                                labelTable.Visible = true;
+                                panelInfo.Visible = true;
+                            }
+                            ghiChuOrder = order.GhiChu;
+                            if (!string.IsNullOrEmpty(ghiChuOrder))
+                            {
+                                labelIsNOte.Visible = true;
+                            }
+                            else
+                            {
+                                labelIsNOte.Visible = false;
+                            }
+                            orderType = order.LoaiDonHang;
+                            if (orderType != "")
+                            {
+                                labelTable.Text = orderType;
+                            }
+                            string daThanhToan = order.DaThanhToan;
+                            if (daThanhToan == "Đã thanh toán")
+                            {
+                                buttonCash.Text = "Đã thanh toán"; // Cập nhật nút thanh toán
+                                buttonCash.Enabled = false; // Vô hiệu hóa nút thanh toán
+                            }
+                            else
+                            {
+                                buttonCash.Text = "Thanh toán"; // Cập nhật nút thanh toán
+                                buttonCash.Enabled = true; // Kích hoạt nút thanh toán
+                            }
+                            trangThai = order.TrangThai;
                         }
-                        else
-                        {
-                            labelTable.Text = orderType;
-                            labelTable.Visible = true;
-                            panelInfo.Visible = true;
-                        }
-                        ghiChuOrder = order.GhiChu;
-                        if (!string.IsNullOrEmpty(ghiChuOrder))
-                        {
-                            labelIsNOte.Visible = true;
-                        }
-                        else
-                        {
-                            labelIsNOte.Visible = false;
-                        }
-                        orderType = order.LoaiDonHang;
-                        if (orderType != "")
-                        {
-                            labelTable.Text = orderType;
-                        }
-                        string daThanhToan = order.DaThanhToan;
-                        if (daThanhToan == "Đã thanh toán")
-                        {
-                            buttonCash.Text = "Đã thanh toán"; // Cập nhật nút thanh toán
-                            buttonCash.Enabled = false; // Vô hiệu hóa nút thanh toán
-                        }
-                        else
-                        {
-                            buttonCash.Text = "Thanh toán"; // Cập nhật nút thanh toán
-                            buttonCash.Enabled = true; // Kích hoạt nút thanh toán
-                        }
-                        trangThai = order.TrangThai;
                     }
                 }
             }

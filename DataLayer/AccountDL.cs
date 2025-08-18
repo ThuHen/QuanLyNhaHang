@@ -48,5 +48,97 @@ namespace DataLayer
                 Disconnect();
             }
         }
+        public List<Account> GetAllAccount()
+        {
+            string sql = "SELECT * FROM TaiKhoan";
+            List<Account> accounts = new List<Account>();
+            try
+            {
+                Connect();
+                SqlDataReader reader = MyExecuteReader(sql, CommandType.Text);
+                while (reader.Read())
+                {
+                    Account account = new Account
+                    {
+                        MaTaiKhoan = reader["MaTaiKhoan"].ToString(),
+                        TenDangNhap = reader["TenDangNhap"].ToString(),
+                        MatKhau = reader["MatKhau"].ToString(),
+                        MaPhanQuyen = Convert.ToInt32(reader["MaPhanQuyen"])
+                    };
+
+                    accounts.Add(account);
+                }
+                reader.Close();
+                return accounts;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Disconnect();
+            }
+        }
+        
+        public int Add(Account account)
+        {
+            string sql = "INSERT into TaiKhoan (TenDangNhap, MatKhau, MaPhanQuyen) " +
+                         "VALUES (@username, @password, @role)";
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@username", account.TenDangNhap),
+                new SqlParameter("@password", account.MatKhau),
+                new SqlParameter("@role", account.MaPhanQuyen)
+            };
+
+            try
+            {
+                return MyExcuteNonQuery(sql, CommandType.Text, parameters);
+
+            }
+            catch (SqlException ex)
+            {
+
+                throw ex;
+            }
+        }
+        public void Del(string id)
+        {
+            string sql = "DELETE FROM TaiKhoan WHERE MaTaiKhoan = @id";
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@id", id)
+            };
+            try
+            {
+                MyExcuteNonQuery(sql, CommandType.Text, parameters);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void Edit(string id, Account account)
+        {
+            string sql = "UPDATE TaiKhoan SET TenDangNhap = @username, MatKhau = @password, MaPhanQuyen = @role WHERE MaTaiKhoan = @id";
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@id", id),
+                new SqlParameter("@username", account.TenDangNhap),
+                new SqlParameter("@password", account.MatKhau),
+                new SqlParameter("@role", account.MaPhanQuyen)
+            };
+
+            try
+            {
+                MyExcuteNonQuery(sql, CommandType.Text, parameters);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
