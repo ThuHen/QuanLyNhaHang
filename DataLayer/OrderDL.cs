@@ -20,8 +20,8 @@ namespace DataLayer
             {
                 ChangeStatusTable(order.MaBan.Value);
             }
-            string query = @"INSERT INTO DonHang (LoaiDonHang, TrangThai, DaThanhToan, TongTien, TienNhan, TienThua, MaBan, GhiChu,ThoiGian)
-                             VALUES (@OrderType, @Status,@Payment, @Total, @Received, @Change, @TableID,@Note, @Time);
+            string query = @"INSERT INTO DonHang (LoaiDonHang, TrangThai, DaThanhToan, TongTien, GiamGia, TienNhan, TienThua, MaBan, GhiChu,ThoiGian)
+                             VALUES (@OrderType, @Status,@Payment, @Total,@Discount, @Received, @Change, @TableID,@Note, @Time);
                              SELECT SCOPE_IDENTITY();";
 
             List<SqlParameter> parameters = new List<SqlParameter>
@@ -30,6 +30,7 @@ namespace DataLayer
                 new SqlParameter("@Status", order.TrangThai),
                 new SqlParameter("@Payment", order.DaThanhToan),
                 new SqlParameter("@Total", order.TongTien),
+                new SqlParameter("@Discount", order.GiamGia),
                 new SqlParameter("@Received", order.TienNhan),
                 new SqlParameter("@Change", order.TienThua),
                 new SqlParameter("@TableID", order.MaBan as object ?? DBNull.Value),
@@ -191,7 +192,7 @@ namespace DataLayer
         }
         public Order GetOrderById(int orderId)
         {
-            string sql = "SELECT * FROM DonHang WHERE MaDonHang = @id";
+            string sql = "SELECT d.*, TenBan FROM DonHang d inner join BanAn on d.MaBan = BanAn.MaBan WHERE MaDonHang = @id";
             List<SqlParameter> parameters = new List<SqlParameter>
                 {
                     new SqlParameter("@id", orderId)
@@ -208,12 +209,14 @@ namespace DataLayer
                         MaDonHang = Convert.ToInt32(reader["MaDonHang"]),
                         LoaiDonHang = reader["LoaiDonHang"].ToString(),
                         DaThanhToan = reader["DaThanhToan"].ToString(),
-                        //TongTien = Convert.ToDouble(reader["TongTien"]),
-                        //TienNhan = Convert.ToDouble(reader["TienNhan"]),
-                        //TienThua = Convert.ToDouble(reader["TienThua"]),
+                        TongTien = Convert.ToDouble(reader["TongTien"]),
+                        TienNhan = Convert.ToDouble(reader["TienNhan"]),
+                        TienThua = Convert.ToDouble(reader["TienThua"]),
                         MaBan = reader["MaBan"] != DBNull.Value ? Convert.ToInt32(reader["MaBan"]) : (int?)null,
                         GhiChu = reader["GhiChu"].ToString(),
-                        //ThoiGian = Convert.ToDateTime(reader["ThoiGian"]),
+                        ThoiGian = Convert.ToDateTime(reader["ThoiGian"]),
+                        GiamGia = reader["GiamGia"] != DBNull.Value ? Convert.ToDouble(reader["GiamGia"]) : 0.0,
+                        TenBan = reader["TenBan"] != DBNull.Value ? reader["TenBan"].ToString() : "",
 
 
                     };
@@ -268,10 +271,11 @@ namespace DataLayer
             return orderDetails;
         }
 
-        public int UpdatePayment(int orderId, double Total, double Received, double Change)
+        public int UpdatePayment(int orderId, double Total, double discount, double Received, double Change)
         {
             string sql = @"UPDATE DonHang 
                            SET TongTien = @Total, 
+                               GiamGia = @discount,
                                TienNhan = @rec, 
                                TienThua = @Change ,
                                DaThanhToan = N'Đã thanh toán'
@@ -279,6 +283,7 @@ namespace DataLayer
             List<SqlParameter> parameters = new List<SqlParameter>
                 {
                     new SqlParameter("@Total", Total),
+                    new SqlParameter("@discount", discount),
                     new SqlParameter("@rec", Received),
                     new SqlParameter("@Change", Change),
                     new SqlParameter("@id", orderId)
@@ -312,6 +317,29 @@ namespace DataLayer
             
             MyExcuteNonQuery(sql, CommandType.Text, parameters);
         }
+        public int getTableIdByOrderId(int orderId)
+        {
+            string sql = "SELECT MaBan FROM DonHang WHERE MaDonHang = @OrderID";
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@OrderID", orderId)
+            };
+            try
+            {
+                Connect();
+                object result = MyExecuteScalar(sql, CommandType.Text, parameters);
+                return result != null ? Convert.ToInt32(result) : 0;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                Disconnect();
+            }
+        }
+
         //    public List<Order> GetKitchenOrders()
         //    {
         //        string sql = "SELECT MainID, Date, Time, TableName, WaiterName, OrderType FROM tblMain WHERE Status <>'Complete'";

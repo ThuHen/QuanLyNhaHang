@@ -82,6 +82,7 @@ namespace PresentationLayer
             colEdit.Name = "Edit";
             colEdit.HeaderText = "";
             colEdit.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            colEdit.Image = Properties.Resources.icons8_edit_pencil_30;
             dataGridView.Columns.Add(colEdit);
 
             // Cột Delete
@@ -89,6 +90,7 @@ namespace PresentationLayer
             colDelete.Name = "Delete";
             colDelete.HeaderText = "";
             colDelete.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            colDelete.Image = Properties.Resources.icons8_trash_30;
             dataGridView.Columns.Add(colDelete);
         }
 

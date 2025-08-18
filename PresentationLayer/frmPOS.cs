@@ -25,8 +25,13 @@ namespace PresentationLayer
         public string tenBan = "";
         public string ghiChuOrder = "";
         public int selectedOrder = 0;
+        public string trangThai = "Chờ xử lý";
         public int isAdmin = 0; // 1: admin, 0: nhân viên
-
+        public int isThanhToan = 0; // 1: đã thanh toán, 0: chưa thanh toán
+        public double tongTien = 0; // Tổng tiền của đơn hàng
+        public double tienNhan = 0; // Tiền khách đưa
+        public double tienThua = 0; // Tiền thừa trả lại cho khách
+        public double giamGia = 0; // Giảm giá nếu có
         public frmPOS(int isAdmin_)
         {
             InitializeComponent();
@@ -34,7 +39,6 @@ namespace PresentationLayer
             categoryBL = new CategoryBL();
             isAdmin = isAdmin_; // Lưu giá trị isAdmin từ tham số truyền vào
         }
-
         private void frmPOS_Load(object sender, EventArgs e)
         {
             ShowCurrentTime();
@@ -43,9 +47,6 @@ namespace PresentationLayer
             LoadCategories();
 
         }
-
-
-
         public void ShowCurrentTime()
         {
 
@@ -53,7 +54,6 @@ namespace PresentationLayer
             timer1.Tick += timer1_Tick;
             timer1.Start();
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             labelTime.Text = DateTime.Now.ToString("HH:mm:ss dd/MM/yyyy");
@@ -110,9 +110,10 @@ namespace PresentationLayer
                     }
                 }
                 int stt = dataGridView.Rows.Count + 1;
-                Image hinh = selectedProduct.HinhAnh;
+                Image hinhDelete = Properties.Resources.icons8_trash_30;
+
                 dataGridView.Rows.Add(new object[] {  selectedProduct.MaSanPham,stt, selectedProduct.TenSanPham,
-                    selectedProduct.GiaSanPham, 1, selectedProduct.GiaSanPham,hinh,hinh });
+                    selectedProduct.GiaSanPham, 1, selectedProduct.GiaSanPham,hinhDelete });
                 GetTotal();//chon product khac
             };
         }
@@ -167,20 +168,18 @@ namespace PresentationLayer
         {
             if (isAdmin == 1)
             {
+                this.Close(); // Đóng form nếu là admin
                 Form form = new frmBangDieuKhien();
-                form.Show();
-                this.Hide();
+                form.Show(); // Hiển thị form BangDieuKhien
             }
             else
             {
-                // Xác nhận trước khi thoát
-                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn thoát không?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn đóng cửa sổ này?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
+                    this.Close(); // Đóng form nếu không phải admin
                     Form form = new frmDangNhap();
-                    form.Show();
-                    this.Hide();
-
+                    form.Show(); // Hiển thị form đăng nhập
                 }
             }
         }
@@ -192,7 +191,6 @@ namespace PresentationLayer
                 pro.Visible = pro.TenSanPham.ToLower().Contains(textBoxSearch.Text.Trim().ToLower());
             }
         }
-
         private void labelNew_Click(object sender, EventArgs e)
         {
             ClearForm();
@@ -208,10 +206,9 @@ namespace PresentationLayer
             labelTable.Visible = false;
             panelInfo.Visible = false;
             ghiChuOrder = "";
-            flowLayoutPanelProduct.Enabled = true;
+            enableButtons(true); // Kích hoạt lại các nút khi tạo đơn hàng mới
             selectedOrder = 0; // Đặt lại mã đơn hàng đã chọn
         }
-
         private void labelDinin_Click(object sender, EventArgs e)
         {
             orderType = "Ăn tại bàn";
@@ -234,16 +231,16 @@ namespace PresentationLayer
                 labelTable.Visible = false;
                 panelInfo.Visible = false;
             }
+            buttonCash.Visible = false; // Hiển thị nút thanh toán
         }
-
         private void labelTakeAway_Click(object sender, EventArgs e)
         {
+            buttonCash.Visible = true; // Hiển thị nút thanh toán
             orderType = "Mang đi";
             labelTable.Text = orderType;
             labelTable.Visible = true;
             panelInfo.Visible = true;
         }
-
         private void labelSendKitchen_Click(object sender, EventArgs e)
         {
             if (orderType == "")
@@ -251,24 +248,34 @@ namespace PresentationLayer
                 MessageBox.Show("Vui lòng chọn loại đơn hàng trước khi gửi", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            Order order = new Order
+            if (orderType == "Mang đi" && isThanhToan == 0)
             {
-                LoaiDonHang = orderType,
-                TrangThai = "Chờ xử lý",
-                DaThanhToan = "Chưa thanh toán",
-                TongTien = 0,
-                TienNhan = 0,
-                TienThua = 0,
-                MaBan = maBan == 0 ? null : maBan, // Nếu maBan là 0 thì để null
-                GhiChu = ghiChuOrder,
-                ThoiGian = DateTime.Now,
-                Details = GetOrderDetailsFromGrid()
-            };
-            selectedOrder = OrderBL.SaveOrder(order, selectedOrder);
-            if (selectedOrder > 0)
+                MessageBox.Show("Đơn này chưa được thanh toán.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (orderType == "Ăn tại bàn")
             {
-                MessageBox.Show("Luu đơn hàng thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+                Order order = new Order
+                {
+                    LoaiDonHang = orderType,
+                    TrangThai = "Chờ xử lý",
+                    DaThanhToan = "Chưa thanh toán",
+                    TongTien = tongTien,
+                    TienNhan = tienNhan,
+                    TienThua = tienThua,
+                    GiamGia = giamGia,
+                    MaBan = maBan == 0 ? null : maBan, // Nếu maBan là 0 thì để null
+                    GhiChu = ghiChuOrder,
+                    ThoiGian = DateTime.Now,
+                    Details = GetOrderDetailsFromGrid()
+                };
+                selectedOrder = OrderBL.SaveOrder(order, selectedOrder);
+
+                if (selectedOrder > 0)
+                {
+                    MessageBox.Show("Luu đơn hàng thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                ClearForm();
             }
         }
         private List<OrderDetail> GetOrderDetailsFromGrid()
@@ -286,7 +293,6 @@ namespace PresentationLayer
             }
             return details;
         }
-
         private void labelNote_Click(object sender, EventArgs e)
         {
             Form form = new frmNoteOrder();
@@ -307,21 +313,16 @@ namespace PresentationLayer
                 labelIsNOte.Visible = false;
             }
         }
-
-
         private void labelList_Click(object sender, EventArgs e)
         {
             Form form = new frmListOrder();
             if (form.ShowDialog() == DialogResult.OK)
             {
-                flowLayoutPanelProduct.Enabled = false; // Vô hiệu hóa flowLayoutPanelProduct khi mở frmListOrder
-                labelSendKitchen.Enabled = false; // Vô hiệu hóa labelSendKitchen khi mở frmListOrder
-                labelTakeAway.Enabled = false; // Vô hiệu hóa labelTakeAway khi mở frmListOrder
-                labelDinin.Enabled = false; // Vô hiệu hóa labelDinin khi mở frmListOrder
-                labelNew.Enabled = false; // Vô hiệu hóa labelNew khi mở frmListOrder
+                enableButtons(false); // Vô hiệu hóa các nút khi đang xem danh sách đơn hàng
+                buttonCash.Visible = true; // Hiển thị nút thanh toán
 
                 selectedOrder = ((frmListOrder)form).maDonHang; // Lấy mã đơn hàng đã chọn từ frmListOrder
-                if (selectedOrder !=0)
+                if (selectedOrder != 0)
                 {
                     OrderBL orderBL = new OrderBL();
                     Order order = orderBL.GetOrderById(selectedOrder);
@@ -333,18 +334,18 @@ namespace PresentationLayer
                         {
 
                             int stt = dataGridView.Rows.Count + 1;
-                            Image hinh = Properties.Resources.icons8_restaurant_48; // Mặc định hình ảnh nếu không có
-                            dataGridView.Rows.Add(new object[] { detail.MaSanPham, stt, detail.TenSanPham, detail.GiaSanPham, detail.SoLuong, detail.SoLuong * detail.GiaSanPham, hinh, hinh });
+                            Image hinhDelete = Properties.Resources.icons8_trash_30;
+                            dataGridView.Rows.Add(new object[] { detail.MaSanPham, stt, detail.TenSanPham, detail.GiaSanPham, detail.SoLuong, detail.SoLuong * detail.GiaSanPham, hinhDelete });
 
                         }
                         GetTotal();
-                        
-                        if(order.MaBan != null)
+
+                        if (order.MaBan != null)
                         {
                             maBan = order.MaBan.Value; // Chuyển đổi từ int? sang int
                             tenBan = order.TenBan;
                         }
-                        
+
                         if (maBan != 0)
                         {
                             labelTable.Text = order.TenBan;
@@ -367,7 +368,7 @@ namespace PresentationLayer
                             labelIsNOte.Visible = false;
                         }
                         orderType = order.LoaiDonHang;
-                        if (orderType !="")
+                        if (orderType != "")
                         {
                             labelTable.Text = orderType;
                         }
@@ -382,29 +383,63 @@ namespace PresentationLayer
                             buttonCash.Text = "Thanh toán"; // Cập nhật nút thanh toán
                             buttonCash.Enabled = true; // Kích hoạt nút thanh toán
                         }
+                        trangThai = order.TrangThai;
                     }
                 }
             }
-
-
         }
-
+        private void enableButtons(bool enable)
+        {
+            flowLayoutPanelProduct.Enabled = enable;
+            labelSendKitchen.Enabled = enable;
+            labelTakeAway.Enabled = enable;
+            labelDinin.Enabled = enable;
+            labelNote.Enabled = enable;
+        }
         private void buttonCash_Click(object sender, EventArgs e)
         {
-            if (selectedOrder == 0)
+            if (trangThai != "Hoàn thành")
             {
-                MessageBox.Show("Vui lòng tạo hóa đơn trước khi thanh toán");
+                MessageBox.Show("Đơn hàng chưa hoàn thành, không thể thanh toán", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (selectedOrder == 0 && orderType == "Ăn taị bàn")
+            {
+                MessageBox.Show("Vui lòng tạo hóa đơn trước khi thanh toán", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             Form form = new frmPayment();
             ((frmPayment)form).selectedOrder = selectedOrder;
+            ((frmPayment)form).orderType = orderType;
+            //((frmPayment)form).maBan = maBan;
+            //((frmPayment)form).tenBan = tenBan;
+            //((frmPayment)form).ghiChuOrder = ghiChuOrder;
+            //((frmPayment)form).tienNhan = tienNhan;
+            //((frmPayment)form).tienThua = tienThua;
+            //((frmPayment)form).giamGia = giamGia;
             ((frmPayment)form).total = double.Parse(labelTotal.Text);
             if (form.ShowDialog() == DialogResult.OK)
             {
                 MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ClearForm(); // Xóa form sau khi thanh toán thành công
+                isThanhToan = 1; // Đánh dấu đơn hàng đã thanh toán
             }
+            ClearForm();
+        }
+        private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int col = e.ColumnIndex;
+            int row = e.RowIndex;
+            int delColumnIndex = dataGridView.Columns["delete"].Index;
+            if (row < 0) return;// nếu không có dòng nào được chọn thì thoát hàm
+            //xoas dòng
+            if (col == delColumnIndex)
+            {
 
+                dataGridView.Rows.RemoveAt(row);
+                GetTotal();
+
+            }
 
         }
     }

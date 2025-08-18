@@ -128,5 +128,10 @@ namespace PresentationLayer
             form.Show();
             this.Hide();
         }
+
+        private void buttonAccount_Click(object sender, EventArgs e)
+        {
+            AddUserControl(new UserControlAccount());
+        }
     }
 }

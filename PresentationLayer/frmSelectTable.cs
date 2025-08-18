@@ -33,7 +33,6 @@ namespace PresentationLayer
             LoadTrangThaiBan();
 
         }
-
         private void LoadTrangThaiBan()
         {
             List<TableStatus> trangThaiBans = tableStatusBL.GetAllTableStatuses();
@@ -92,14 +91,16 @@ namespace PresentationLayer
             }
 
         }
-
         private void LoadTable()
         {
+            flowLayoutPanelTable.Controls.Clear(); // Xóa các điều khiển hiện có trong FlowLayoutPanel
             List<Table> tables = tableBL.GetAllTables();
             foreach (Table table in tables)
             {
                 var ucTable = new UserControlOneTable();
-                if (table.MaDonHang != 0)
+
+
+                if (table.MaDonHang != 0 && table.MaTrangThai != 1)
                 {
                     ucTable = new UserControlOneTable()
                     {
@@ -119,7 +120,9 @@ namespace PresentationLayer
                         SoLuongCho = table.SoChoNgoi,
 
                     };
+                    ucTable.Enabled = true;
                 }
+
 
                 ucTable.Margin = new Padding(10);
                 ucTable.BorderStyle = BorderStyle.FixedSingle;
@@ -145,26 +148,21 @@ namespace PresentationLayer
 
                 ucTable.onSelect += (sender, e) =>
                 {
-                    SelectedTableId = ucTable.MaBan; // Lưu mã bàn được chọn
-                    SelectedTableName = ucTable.TenBan; // Lưu tên bàn được chọn
-                    this.DialogResult = DialogResult.OK; // Đặt kết quả của form là OK
-                    this.Close(); // Đóng form
+
+                    
+                        SelectedTableId = ucTable.MaBan; // Lưu mã bàn được chọn
+                        SelectedTableName = ucTable.TenBan; // Lưu tên bàn được chọn
+                        this.DialogResult = DialogResult.OK; // Đặt kết quả của form là OK
+                        this.Close(); // Đóng form
+                    
                 };
 
             }
         }
-
-
-
-        private void panelChuThich_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void pictureBoxCloseForm_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
+        
     }
 }

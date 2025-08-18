@@ -48,13 +48,13 @@
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(650, 80);
+            this.panelTop.Size = new System.Drawing.Size(650, 50);
             this.panelTop.TabIndex = 3;
             // 
             // labelNote
             // 
             this.labelNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNote.Location = new System.Drawing.Point(243, 23);
+            this.labelNote.Location = new System.Drawing.Point(230, 9);
             this.labelNote.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNote.Name = "labelNote";
             this.labelNote.Size = new System.Drawing.Size(180, 36);
@@ -99,23 +99,23 @@
             // panelLeft
             // 
             this.panelLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelLeft.Location = new System.Drawing.Point(0, 80);
+            this.panelLeft.Location = new System.Drawing.Point(0, 50);
             this.panelLeft.Name = "panelLeft";
-            this.panelLeft.Size = new System.Drawing.Size(40, 290);
+            this.panelLeft.Size = new System.Drawing.Size(40, 320);
             this.panelLeft.TabIndex = 5;
             // 
             // panelRight
             // 
             this.panelRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelRight.Location = new System.Drawing.Point(610, 80);
+            this.panelRight.Location = new System.Drawing.Point(610, 50);
             this.panelRight.Name = "panelRight";
-            this.panelRight.Size = new System.Drawing.Size(40, 290);
+            this.panelRight.Size = new System.Drawing.Size(40, 320);
             this.panelRight.TabIndex = 6;
             // 
             // panelTop2
             // 
             this.panelTop2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelTop2.Location = new System.Drawing.Point(40, 80);
+            this.panelTop2.Location = new System.Drawing.Point(40, 50);
             this.panelTop2.Name = "panelTop2";
             this.panelTop2.Size = new System.Drawing.Size(570, 40);
             this.panelTop2.TabIndex = 7;
@@ -123,11 +123,11 @@
             // textBoxNoteOrder
             // 
             this.textBoxNoteOrder.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxNoteOrder.Location = new System.Drawing.Point(40, 120);
+            this.textBoxNoteOrder.Location = new System.Drawing.Point(40, 90);
             this.textBoxNoteOrder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxNoteOrder.Multiline = true;
             this.textBoxNoteOrder.Name = "textBoxNoteOrder";
-            this.textBoxNoteOrder.Size = new System.Drawing.Size(570, 250);
+            this.textBoxNoteOrder.Size = new System.Drawing.Size(570, 280);
             this.textBoxNoteOrder.TabIndex = 8;
             // 
             // frmNoteOrder

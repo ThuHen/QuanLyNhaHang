@@ -30,94 +30,51 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panelTop = new System.Windows.Forms.Panel();
-            this.pictureBoxMin = new System.Windows.Forms.PictureBox();
-            this.pictureBoxMax = new System.Windows.Forms.PictureBox();
             this.labelNote = new System.Windows.Forms.Label();
-            this.pictureBoxCloseForm = new System.Windows.Forms.PictureBox();
             this.flowLayoutPanelOrders = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonCount = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButtonAll = new System.Windows.Forms.RadioButton();
             this.radioButtonCheBien = new System.Windows.Forms.RadioButton();
+            this.radioButtonAll = new System.Windows.Forms.RadioButton();
             this.labelTime = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.pictureBoxMinForm = new System.Windows.Forms.PictureBox();
+            this.pictureBoxMaxForm = new System.Windows.Forms.PictureBox();
+            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.panelTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMax)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCloseForm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinForm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMaxForm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.SuspendLayout();
             // 
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.panelTop.Controls.Add(this.pictureBoxMin);
-            this.panelTop.Controls.Add(this.pictureBoxMax);
+            this.panelTop.Controls.Add(this.pictureBoxMinForm);
+            this.panelTop.Controls.Add(this.pictureBoxMaxForm);
+            this.panelTop.Controls.Add(this.pictureBoxClose);
             this.panelTop.Controls.Add(this.labelNote);
-            this.panelTop.Controls.Add(this.pictureBoxCloseForm);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1412, 80);
+            this.panelTop.Size = new System.Drawing.Size(1412, 50);
             this.panelTop.TabIndex = 5;
-            // 
-            // pictureBoxMin
-            // 
-            this.pictureBoxMin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxMin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxMin.Image = global::PresentationLayer.Properties.Resources.icons8_close_64;
-            this.pictureBoxMin.Location = new System.Drawing.Point(1248, 22);
-            this.pictureBoxMin.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.pictureBoxMin.Name = "pictureBoxMin";
-            this.pictureBoxMin.Size = new System.Drawing.Size(37, 37);
-            this.pictureBoxMin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxMin.TabIndex = 6;
-            this.pictureBoxMin.TabStop = false;
-            this.pictureBoxMin.Click += new System.EventHandler(this.pictureBoxMin_Click);
-            // 
-            // pictureBoxMax
-            // 
-            this.pictureBoxMax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxMax.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxMax.Image = global::PresentationLayer.Properties.Resources.icons8_close_64;
-            this.pictureBoxMax.Location = new System.Drawing.Point(1295, 22);
-            this.pictureBoxMax.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.pictureBoxMax.Name = "pictureBoxMax";
-            this.pictureBoxMax.Size = new System.Drawing.Size(37, 37);
-            this.pictureBoxMax.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxMax.TabIndex = 5;
-            this.pictureBoxMax.TabStop = false;
-            this.pictureBoxMax.Click += new System.EventHandler(this.pictureBoxMax_Click);
             // 
             // labelNote
             // 
             this.labelNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNote.Image = global::PresentationLayer.Properties.Resources.icons8_chef_hat_50__1_;
             this.labelNote.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelNote.Location = new System.Drawing.Point(488, 9);
+            this.labelNote.Location = new System.Drawing.Point(166, 0);
             this.labelNote.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNote.Name = "labelNote";
-            this.labelNote.Size = new System.Drawing.Size(240, 58);
+            this.labelNote.Size = new System.Drawing.Size(123, 58);
             this.labelNote.TabIndex = 3;
             this.labelNote.Text = "Bếp";
             this.labelNote.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelNote.Click += new System.EventHandler(this.labelNote_Click);
-            // 
-            // pictureBoxCloseForm
-            // 
-            this.pictureBoxCloseForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxCloseForm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxCloseForm.Image = global::PresentationLayer.Properties.Resources.icons8_close_64;
-            this.pictureBoxCloseForm.Location = new System.Drawing.Point(1342, 22);
-            this.pictureBoxCloseForm.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.pictureBoxCloseForm.Name = "pictureBoxCloseForm";
-            this.pictureBoxCloseForm.Size = new System.Drawing.Size(37, 37);
-            this.pictureBoxCloseForm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxCloseForm.TabIndex = 4;
-            this.pictureBoxCloseForm.TabStop = false;
-            this.pictureBoxCloseForm.Click += new System.EventHandler(this.pictureBoxCloseForm_Click);
             // 
             // flowLayoutPanelOrders
             // 
@@ -139,7 +96,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::PresentationLayer.Properties.Resources.icons8_restaurant_641;
+            this.pictureBox1.Image = global::PresentationLayer.Properties.Resources.icons8_reload_50;
             this.pictureBox1.Location = new System.Drawing.Point(693, 111);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(30, 30);
@@ -158,18 +115,6 @@
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             // 
-            // radioButtonAll
-            // 
-            this.radioButtonAll.AutoSize = true;
-            this.radioButtonAll.Checked = true;
-            this.radioButtonAll.Location = new System.Drawing.Point(18, 20);
-            this.radioButtonAll.Name = "radioButtonAll";
-            this.radioButtonAll.Size = new System.Drawing.Size(88, 29);
-            this.radioButtonAll.TabIndex = 0;
-            this.radioButtonAll.Text = "Tất cả";
-            this.radioButtonAll.UseVisualStyleBackColor = true;
-            this.radioButtonAll.CheckedChanged += new System.EventHandler(this.radioButtonAll_CheckedChanged);
-            // 
             // radioButtonCheBien
             // 
             this.radioButtonCheBien.AutoSize = true;
@@ -181,6 +126,19 @@
             this.radioButtonCheBien.UseVisualStyleBackColor = true;
             this.radioButtonCheBien.CheckedChanged += new System.EventHandler(this.radioButtonCheBien_CheckedChanged);
             // 
+            // radioButtonAll
+            // 
+            this.radioButtonAll.AutoSize = true;
+            this.radioButtonAll.Checked = true;
+            this.radioButtonAll.Location = new System.Drawing.Point(18, 20);
+            this.radioButtonAll.Name = "radioButtonAll";
+            this.radioButtonAll.Size = new System.Drawing.Size(88, 29);
+            this.radioButtonAll.TabIndex = 0;
+            this.radioButtonAll.TabStop = true;
+            this.radioButtonAll.Text = "Tất cả";
+            this.radioButtonAll.UseVisualStyleBackColor = true;
+            this.radioButtonAll.CheckedChanged += new System.EventHandler(this.radioButtonAll_CheckedChanged);
+            // 
             // labelTime
             // 
             this.labelTime.AutoSize = true;
@@ -189,6 +147,49 @@
             this.labelTime.Size = new System.Drawing.Size(48, 25);
             this.labelTime.TabIndex = 11;
             this.labelTime.Text = "time";
+            // 
+            // pictureBoxMinForm
+            // 
+            this.pictureBoxMinForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxMinForm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxMinForm.Image = global::PresentationLayer.Properties.Resources.icons8_minimize_window_26;
+            this.pictureBoxMinForm.Location = new System.Drawing.Point(1268, 9);
+            this.pictureBoxMinForm.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.pictureBoxMinForm.Name = "pictureBoxMinForm";
+            this.pictureBoxMinForm.Size = new System.Drawing.Size(37, 37);
+            this.pictureBoxMinForm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxMinForm.TabIndex = 15;
+            this.pictureBoxMinForm.TabStop = false;
+            this.pictureBoxMinForm.Click += new System.EventHandler(this.pictureBoxMin_Click);
+            // 
+            // pictureBoxMaxForm
+            // 
+            this.pictureBoxMaxForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxMaxForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.pictureBoxMaxForm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxMaxForm.Image = global::PresentationLayer.Properties.Resources.icons8_maximize_window_26;
+            this.pictureBoxMaxForm.Location = new System.Drawing.Point(1315, 9);
+            this.pictureBoxMaxForm.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.pictureBoxMaxForm.Name = "pictureBoxMaxForm";
+            this.pictureBoxMaxForm.Size = new System.Drawing.Size(37, 37);
+            this.pictureBoxMaxForm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxMaxForm.TabIndex = 14;
+            this.pictureBoxMaxForm.TabStop = false;
+            this.pictureBoxMaxForm.Click += new System.EventHandler(this.pictureBoxMax_Click);
+            // 
+            // pictureBoxClose
+            // 
+            this.pictureBoxClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxClose.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxClose.Image = global::PresentationLayer.Properties.Resources.icons8_close_window_26;
+            this.pictureBoxClose.Location = new System.Drawing.Point(1363, 9);
+            this.pictureBoxClose.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.pictureBoxClose.Name = "pictureBoxClose";
+            this.pictureBoxClose.Size = new System.Drawing.Size(37, 37);
+            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxClose.TabIndex = 13;
+            this.pictureBoxClose.TabStop = false;
+            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxCloseForm_Click);
             // 
             // frmKitchen
             // 
@@ -210,31 +211,30 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmKitchen_Load);
             this.panelTop.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMax)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCloseForm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMinForm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMaxForm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox pictureBoxCloseForm;
         private System.Windows.Forms.Label labelNote;
         private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelOrders;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button buttonCount;
-        private System.Windows.Forms.PictureBox pictureBoxMin;
-        private System.Windows.Forms.PictureBox pictureBoxMax;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.RadioButton radioButtonCheBien;
         private System.Windows.Forms.RadioButton radioButtonAll;
         private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.PictureBox pictureBoxMinForm;
+        private System.Windows.Forms.PictureBox pictureBoxMaxForm;
+        private System.Windows.Forms.PictureBox pictureBoxClose;
     }
 }

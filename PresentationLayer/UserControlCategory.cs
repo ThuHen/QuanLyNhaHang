@@ -17,6 +17,7 @@ namespace PresentationLayer
     public partial class UserControlCategory : UserControl
     {
         private CategoryBL categoryBL;
+        public string maDanhMucEdit;
         public UserControlCategory()
         {
             InitializeComponent();
@@ -78,7 +79,7 @@ namespace PresentationLayer
             colEdit.Name = "Edit";
             colEdit.HeaderText = "";
             colEdit.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            //colEdit.Image = Properties.Resources.edit; // Assuming you have an edit icon in your resources
+            colEdit.Image = Properties.Resources.icons8_edit_pencil_30;
             dataGridView.Columns.Add(colEdit);
 
 
@@ -87,6 +88,7 @@ namespace PresentationLayer
             colDelete.Name = "Delete";
             colDelete.HeaderText = "";
             colDelete.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            colDelete.Image = Properties.Resources.icons8_trash_30;
             dataGridView.Columns.Add(colDelete);
 
         }
@@ -154,7 +156,7 @@ namespace PresentationLayer
                 }
             }
         }
-        public string maDanhMucEdit;
+        
         private void SwitchToEdit(string id)
         {
             // Lấy giá trị tên hiện tại từ dòng đang chọn
@@ -224,10 +226,7 @@ namespace PresentationLayer
             {
                 // Attempt to delete the category
                 categoryBL.Edit(maDanhMucEdit, category);
-                MessageBox.Show("Chỉnh sửa thành công!",
-                                "Thông báo",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
+                MessageBox.Show("Chỉnh sửa danh mục thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadCategories();
                 resetInputField();
                 tabControlCategory.SelectedTab = tabPageList; // Quay lại tab danh sách

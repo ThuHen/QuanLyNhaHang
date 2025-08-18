@@ -53,6 +53,10 @@ namespace BussinessLayer
         {
             try
             {
+                if (product.GiaSanPham < 1000)
+                {
+                    throw new ApplicationException("Giá sản phẩm tối thiểu 1000.");
+                }
                 return productDL.Add(product);
             }
             catch (SqlException ex)

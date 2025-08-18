@@ -17,32 +17,36 @@ namespace PresentationLayer
     {
         private OrderBL orderBL;
         public int maDonHang { get; set; } // Biến để lưu mã đơn hàng khi sửa
-        
+
         public frmListOrder()
         {
             InitializeComponent();
             orderBL = new OrderBL();
-            
+
         }
 
         private void frmBillList_Load(object sender, EventArgs e)
         {
-            LoadListOrder(0);
-           
+            LoadListOrder(0);//All type
+
         }
         private void LoadListOrder(int option)
         {
-            List<Order> listOrders= new List<Order>();
+            List<Order> listAllOrders = orderBL.GetListOrders()
+                .Where(o => o.DaThanhToan != "Đã thanh toán" || o.TrangThai != "Hoàn thành")
+                .OrderByDescending(o => o.ThoiGian).ToList(); // hoặc .OrderBy(o => o.ThoiGian) nếu cần tăng dần
+            List<Order> listOrders = new List<Order>();
+
             switch (option)
             {
                 case 0:
-                    listOrders = orderBL.GetListOrders().OrderByDescending(o => o.ThoiGian).ToList(); // hoặc .OrderBy(o => o.ThoiGian) nếu cần tăng dần
+                    listOrders = listAllOrders;
                     break;
                 case 1:
-                    listOrders = orderBL.GetListOrders().Where(o => o.LoaiDonHang == "Ăn tại bàn").OrderByDescending(o => o.ThoiGian).ToList();
+                    listOrders = listAllOrders.Where(o => o.LoaiDonHang == "Ăn tại bàn").ToList();
                     break;
                 case 2:
-                    listOrders = orderBL.GetListOrders().Where(o => o.LoaiDonHang == "Mang đi").OrderByDescending(o => o.ThoiGian).ToList();
+                    listOrders = listAllOrders.Where(o => o.LoaiDonHang == "Mang đi").ToList();
                     break;
             }
             dataGridView1.AutoGenerateColumns = false;// cai truoc khi gan
@@ -70,13 +74,21 @@ namespace PresentationLayer
             int editColumnIndex = dataGridView1.Columns["Edit"].Index;
             int printColumnIndex = dataGridView1.Columns["ColPrint"].Index;
             if (row < 0) return;
+            
             string id = dataGridView1.Rows[row].Cells["MaDonHang"].Value.ToString();
 
             if (col == editColumnIndex)
             {
+                // Lấy giá trị trạng thái từ row
+                //string trangThai = dataGridView1.Rows[row].Cells["TrangThai"].Value.ToString();
+                //if (trangThai == "Hoàn thành")
+                //{
+                //    MessageBox.Show("Đơn hàng đã hoàn thành, không thể sửa.");
+                //    return;
+                //}
                 // Xử lý sửa
                 maDonHang = int.Parse(id);
-                
+
                 this.DialogResult = DialogResult.OK; //tra ve selected order
                 this.Hide();
 
@@ -90,48 +102,46 @@ namespace PresentationLayer
 
         private void Print(string id)
         {
-            //Print frm = new Print();
+            frmPrint frm = new frmPrint();
+            int selectedOrderId = int.Parse(id);
+            Order bill = orderBL.GetOrderById(selectedOrderId);
 
+            string ngay = bill.ThoiGian.ToString("dd/MM/yyyy");
+            string gio = bill.ThoiGian.ToString("HH:mm");
+            string tenBan = bill.TenBan;
+            double tienNhan = bill.TienNhan;
+            double tienThua = bill.TienThua;
+            double giamGia = bill.GiamGia;
+            double tongTien = bill.TongTien;
+            Reports._ReportDataSet__ ds = new Reports._ReportDataSet__();
+            var dt = ds.BillReportDataTable;
+            foreach (var item in bill.Details)
+            {
+                var row = dt.NewRow();
+                row["Date"] = ngay;
+                row["Time"] = gio;
+                row["OrderId"] = id;
+                row["TableName"] = tenBan;
+                row["Received"] = tienNhan;
+                row["Change"] = tienThua;
+                row["Total"] = tongTien;
+                row["Discount"] = giamGia;
+                row["ThanhTien"] = tongTien - giamGia;
+                row["ProductName"] = item.TenSanPham;
+                row["Qty"] = item.SoLuong;
+                row["Price"] = item.GiaSanPham;
+                row["Amount"] = item.GiaSanPham * item.SoLuong;
+                dt.Rows.Add(row);
+            }
 
-            //mainID = Convert.ToInt32(dgvOrders.CurrentRow.Cells["MainID"].Value);
-
-            //List<FullBillDetail> bill = orderBL.GetFullBillDetails(mainID);
-
-            //DataTable dt = new DataTable("BillReportTableName");
-
-            //dt.Columns.Add("Date", typeof(DateTime));
-            //dt.Columns.Add("Time", typeof(string));
-
-            //dt.Columns.Add("OrderType", typeof(string));
-            //dt.Columns.Add("CusName", typeof(string));
-            //dt.Columns.Add("Name", typeof(string));
-            //dt.Columns.Add("TableName", typeof(string));
-            //dt.Columns.Add("Received", typeof(double));
-            //dt.Columns.Add("Change", typeof(double));
-
-
-
-
-            //dt.Columns.Add("Qty", typeof(int));
-            //dt.Columns.Add("Amount", typeof(double));
-            //dt.Columns.Add("Price", typeof(double));
-            //dt.Columns.Add("WaiterName", typeof(string));
-
-            //foreach (var item in bill)
-            //{
-            //    dt.Rows.Add(item.Date, item.Time, item.OrderType, item.CusName, item.Name, item.TableName,
-            //         item.Received, item.Change, item.Qty, item.Amount, item.Price, item.WaiterName);
-            //}
-
-            //// Gắn DataSet vào ReportSource
-
-            //reportBill rpt = new reportBill();
-            //rpt.SetDataSource(dt);
-            //frm.crystalReportViewer2.ReportSource = rpt;
-            //frm.Show();
+            //Gắn DataSet vào ReportSource
+            Reports.reportBill rpt = new Reports.reportBill();
+            rpt.SetDataSource(ds);
+            frm.crystalReportViewer1.ReportSource = rpt;
+            frm.Show();
         }
 
-        
+
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {

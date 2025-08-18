@@ -155,7 +155,7 @@
             this.tabPageAddEdit.Location = new System.Drawing.Point(4, 34);
             this.tabPageAddEdit.Name = "tabPageAddEdit";
             this.tabPageAddEdit.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAddEdit.Size = new System.Drawing.Size(1021, 662);
+            this.tabPageAddEdit.Size = new System.Drawing.Size(1063, 702);
             this.tabPageAddEdit.TabIndex = 1;
             this.tabPageAddEdit.Text = "Tạo mới ";
             this.tabPageAddEdit.UseVisualStyleBackColor = true;

@@ -79,12 +79,12 @@ namespace PresentationLayer
 
         private void pictureBoxMinimizeForm_MouseHover(object sender, EventArgs e)
         {
-            toolTip1.SetToolTip(pictureBoxMinimizeForm, "Thu nhỏ cửa sổ");
+            toolTip1.SetToolTip(pictureBoxMinForm, "Thu nhỏ cửa sổ");
         }
 
         private void pictureBoxCloseForm_MouseHover(object sender, EventArgs e)
         {
-            toolTip1.SetToolTip(pictureBoxCloseForm, "Đóng cửa sổ");
+            toolTip1.SetToolTip(pictureBoxClose, "Đóng cửa sổ");
         }
 
 

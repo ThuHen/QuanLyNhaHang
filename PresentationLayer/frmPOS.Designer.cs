@@ -30,16 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panelTop = new System.Windows.Forms.Panel();
-            this.labelNote = new System.Windows.Forms.Label();
             this.panelInfo = new System.Windows.Forms.Panel();
             this.labelIsNOte = new System.Windows.Forms.Label();
             this.labelTable = new System.Windows.Forms.Label();
+            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
+            this.labelNote = new System.Windows.Forms.Label();
             this.labelList = new System.Windows.Forms.Label();
             this.labelTakeAway = new System.Windows.Forms.Label();
             this.labelSendKitchen = new System.Windows.Forms.Label();
             this.labelDinin = new System.Windows.Forms.Label();
             this.labelNew = new System.Windows.Forms.Label();
-            this.pictureBoxCloseForm = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panelSearch = new System.Windows.Forms.Panel();
             this.labelTime = new System.Windows.Forms.Label();
@@ -51,6 +51,9 @@
             this.flowLayoutPanelCategory = new System.Windows.Forms.FlowLayoutPanel();
             this.panelOrder = new System.Windows.Forms.Panel();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.flowLayoutPanelProduct = new System.Windows.Forms.FlowLayoutPanel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.MaSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenSanPham = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,11 +61,9 @@
             this.SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.delete = new System.Windows.Forms.DataGridViewImageColumn();
-            this.flowLayoutPanelProduct = new System.Windows.Forms.FlowLayoutPanel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panelTop.SuspendLayout();
             this.panelInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCloseForm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.panelSearch.SuspendLayout();
             this.panelBottom.SuspendLayout();
             this.panelOrder.SuspendLayout();
@@ -71,50 +72,36 @@
             // 
             // panelTop
             // 
-            this.panelTop.Controls.Add(this.labelNote);
             this.panelTop.Controls.Add(this.panelInfo);
+            this.panelTop.Controls.Add(this.pictureBoxClose);
+            this.panelTop.Controls.Add(this.labelNote);
             this.panelTop.Controls.Add(this.labelList);
             this.panelTop.Controls.Add(this.labelTakeAway);
             this.panelTop.Controls.Add(this.labelSendKitchen);
             this.panelTop.Controls.Add(this.labelDinin);
             this.panelTop.Controls.Add(this.labelNew);
-            this.panelTop.Controls.Add(this.pictureBoxCloseForm);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1437, 133);
+            this.panelTop.Size = new System.Drawing.Size(1437, 107);
             this.panelTop.TabIndex = 0;
-            // 
-            // labelNote
-            // 
-            this.labelNote.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.labelNote.Image = global::PresentationLayer.Properties.Resources.icons8_close_64;
-            this.labelNote.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelNote.Location = new System.Drawing.Point(902, 9);
-            this.labelNote.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelNote.Name = "labelNote";
-            this.labelNote.Size = new System.Drawing.Size(92, 101);
-            this.labelNote.TabIndex = 12;
-            this.labelNote.Text = "Ghi chú";
-            this.labelNote.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.labelNote.Click += new System.EventHandler(this.labelNote_Click);
             // 
             // panelInfo
             // 
             this.panelInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelInfo.Controls.Add(this.labelIsNOte);
             this.panelInfo.Controls.Add(this.labelTable);
-            this.panelInfo.Location = new System.Drawing.Point(388, 12);
+            this.panelInfo.Location = new System.Drawing.Point(813, 30);
             this.panelInfo.Name = "panelInfo";
-            this.panelInfo.Size = new System.Drawing.Size(200, 98);
+            this.panelInfo.Size = new System.Drawing.Size(200, 69);
             this.panelInfo.TabIndex = 0;
             this.panelInfo.Visible = false;
             // 
             // labelIsNOte
             // 
             this.labelIsNOte.AutoSize = true;
-            this.labelIsNOte.Location = new System.Drawing.Point(19, 57);
+            this.labelIsNOte.Location = new System.Drawing.Point(19, 40);
             this.labelIsNOte.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelIsNOte.Name = "labelIsNOte";
             this.labelIsNOte.Size = new System.Drawing.Size(112, 25);
@@ -133,15 +120,43 @@
             this.labelTable.Text = "table";
             this.labelTable.Visible = false;
             // 
+            // pictureBoxClose
+            // 
+            this.pictureBoxClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxClose.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxClose.Image = global::PresentationLayer.Properties.Resources.icons8_close_window_26;
+            this.pictureBoxClose.Location = new System.Drawing.Point(1386, 12);
+            this.pictureBoxClose.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.pictureBoxClose.Name = "pictureBoxClose";
+            this.pictureBoxClose.Size = new System.Drawing.Size(37, 37);
+            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxClose.TabIndex = 15;
+            this.pictureBoxClose.TabStop = false;
+            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxCloseForm_Click);
+            // 
+            // labelNote
+            // 
+            this.labelNote.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.labelNote.Image = global::PresentationLayer.Properties.Resources.icons8_note_60;
+            this.labelNote.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelNote.Location = new System.Drawing.Point(136, 9);
+            this.labelNote.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelNote.Name = "labelNote";
+            this.labelNote.Size = new System.Drawing.Size(90, 90);
+            this.labelNote.TabIndex = 12;
+            this.labelNote.Text = "Ghi chú";
+            this.labelNote.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.labelNote.Click += new System.EventHandler(this.labelNote_Click);
+            // 
             // labelList
             // 
             this.labelList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.labelList.Image = global::PresentationLayer.Properties.Resources.icons8_close_64;
+            this.labelList.Image = global::PresentationLayer.Properties.Resources.icons8_list_60;
             this.labelList.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelList.Location = new System.Drawing.Point(1201, 9);
+            this.labelList.Location = new System.Drawing.Point(626, 9);
             this.labelList.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelList.Name = "labelList";
-            this.labelList.Size = new System.Drawing.Size(129, 101);
+            this.labelList.Size = new System.Drawing.Size(115, 90);
             this.labelList.TabIndex = 11;
             this.labelList.Text = "Danh sách";
             this.labelList.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -150,12 +165,12 @@
             // labelTakeAway
             // 
             this.labelTakeAway.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.labelTakeAway.Image = global::PresentationLayer.Properties.Resources.icons8_close_64;
+            this.labelTakeAway.Image = global::PresentationLayer.Properties.Resources.icons8_take_away_food_60;
             this.labelTakeAway.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelTakeAway.Location = new System.Drawing.Point(802, 9);
+            this.labelTakeAway.Location = new System.Drawing.Point(332, 9);
             this.labelTakeAway.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelTakeAway.Name = "labelTakeAway";
-            this.labelTakeAway.Size = new System.Drawing.Size(92, 101);
+            this.labelTakeAway.Size = new System.Drawing.Size(90, 90);
             this.labelTakeAway.TabIndex = 10;
             this.labelTakeAway.Text = "Mang đi";
             this.labelTakeAway.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -164,12 +179,12 @@
             // labelSendKitchen
             // 
             this.labelSendKitchen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.labelSendKitchen.Image = global::PresentationLayer.Properties.Resources.icons8_close_64;
+            this.labelSendKitchen.Image = global::PresentationLayer.Properties.Resources.icons8_kitchen_60;
             this.labelSendKitchen.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelSendKitchen.Location = new System.Drawing.Point(1002, 9);
+            this.labelSendKitchen.Location = new System.Drawing.Point(430, 9);
             this.labelSendKitchen.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSendKitchen.Name = "labelSendKitchen";
-            this.labelSendKitchen.Size = new System.Drawing.Size(92, 101);
+            this.labelSendKitchen.Size = new System.Drawing.Size(90, 90);
             this.labelSendKitchen.TabIndex = 9;
             this.labelSendKitchen.Text = "Gửi bếp";
             this.labelSendKitchen.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -178,12 +193,12 @@
             // labelDinin
             // 
             this.labelDinin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.labelDinin.Image = global::PresentationLayer.Properties.Resources.icons8_restaurant_table_100;
+            this.labelDinin.Image = global::PresentationLayer.Properties.Resources.icons8_restaurant_table_60;
             this.labelDinin.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelDinin.Location = new System.Drawing.Point(677, 9);
+            this.labelDinin.Location = new System.Drawing.Point(234, 9);
             this.labelDinin.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDinin.Name = "labelDinin";
-            this.labelDinin.Size = new System.Drawing.Size(117, 119);
+            this.labelDinin.Size = new System.Drawing.Size(90, 90);
             this.labelDinin.TabIndex = 8;
             this.labelDinin.Text = "Tại bàn";
             this.labelDinin.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -192,31 +207,16 @@
             // labelNew
             // 
             this.labelNew.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.labelNew.Image = global::PresentationLayer.Properties.Resources.icons8_close_64;
+            this.labelNew.Image = global::PresentationLayer.Properties.Resources.icons8_new_ticket_60;
             this.labelNew.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.labelNew.Location = new System.Drawing.Point(1101, 9);
+            this.labelNew.Location = new System.Drawing.Point(528, 9);
             this.labelNew.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNew.Name = "labelNew";
-            this.labelNew.Size = new System.Drawing.Size(92, 101);
+            this.labelNew.Size = new System.Drawing.Size(90, 90);
             this.labelNew.TabIndex = 3;
             this.labelNew.Text = "Tạo mới";
             this.labelNew.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.labelNew.Click += new System.EventHandler(this.labelNew_Click);
-            // 
-            // pictureBoxCloseForm
-            // 
-            this.pictureBoxCloseForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxCloseForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.pictureBoxCloseForm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxCloseForm.Image = global::PresentationLayer.Properties.Resources.icons8_close_64;
-            this.pictureBoxCloseForm.Location = new System.Drawing.Point(1361, 20);
-            this.pictureBoxCloseForm.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
-            this.pictureBoxCloseForm.Name = "pictureBoxCloseForm";
-            this.pictureBoxCloseForm.Size = new System.Drawing.Size(54, 57);
-            this.pictureBoxCloseForm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxCloseForm.TabIndex = 3;
-            this.pictureBoxCloseForm.TabStop = false;
-            this.pictureBoxCloseForm.Click += new System.EventHandler(this.pictureBoxCloseForm_Click);
             // 
             // label1
             // 
@@ -234,7 +234,7 @@
             this.panelSearch.Controls.Add(this.label1);
             this.panelSearch.Controls.Add(this.textBoxSearch);
             this.panelSearch.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelSearch.Location = new System.Drawing.Point(0, 133);
+            this.panelSearch.Location = new System.Drawing.Point(0, 107);
             this.panelSearch.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panelSearch.Name = "panelSearch";
             this.panelSearch.Size = new System.Drawing.Size(1437, 48);
@@ -279,6 +279,7 @@
             this.buttonCash.TabIndex = 5;
             this.buttonCash.Text = "Thanh toán";
             this.buttonCash.UseVisualStyleBackColor = false;
+            this.buttonCash.Visible = false;
             this.buttonCash.Click += new System.EventHandler(this.buttonCash_Click);
             // 
             // label2
@@ -304,18 +305,18 @@
             // flowLayoutPanelCategory
             // 
             this.flowLayoutPanelCategory.Dock = System.Windows.Forms.DockStyle.Left;
-            this.flowLayoutPanelCategory.Location = new System.Drawing.Point(0, 181);
+            this.flowLayoutPanelCategory.Location = new System.Drawing.Point(0, 155);
             this.flowLayoutPanelCategory.Name = "flowLayoutPanelCategory";
-            this.flowLayoutPanelCategory.Size = new System.Drawing.Size(186, 371);
+            this.flowLayoutPanelCategory.Size = new System.Drawing.Size(186, 397);
             this.flowLayoutPanelCategory.TabIndex = 3;
             // 
             // panelOrder
             // 
             this.panelOrder.Controls.Add(this.dataGridView);
             this.panelOrder.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelOrder.Location = new System.Drawing.Point(832, 181);
+            this.panelOrder.Location = new System.Drawing.Point(832, 155);
             this.panelOrder.Name = "panelOrder";
-            this.panelOrder.Size = new System.Drawing.Size(605, 371);
+            this.panelOrder.Size = new System.Drawing.Size(605, 397);
             this.panelOrder.TabIndex = 4;
             // 
             // dataGridView
@@ -339,8 +340,27 @@
             this.dataGridView.RowHeadersWidth = 51;
             this.dataGridView.RowTemplate.Height = 24;
             this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView.Size = new System.Drawing.Size(605, 371);
+            this.dataGridView.Size = new System.Drawing.Size(605, 397);
             this.dataGridView.TabIndex = 0;
+            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
+            // 
+            // flowLayoutPanelProduct
+            // 
+            this.flowLayoutPanelProduct.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowLayoutPanelProduct.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelProduct.Location = new System.Drawing.Point(186, 155);
+            this.flowLayoutPanelProduct.Name = "flowLayoutPanelProduct";
+            this.flowLayoutPanelProduct.Size = new System.Drawing.Size(646, 397);
+            this.flowLayoutPanelProduct.TabIndex = 5;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = global::PresentationLayer.Properties.Resources.icons8_delete_trash_30;
+            this.dataGridViewImageColumn1.MinimumWidth = 6;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            this.dataGridViewImageColumn1.Width = 30;
             // 
             // MaSanPham
             // 
@@ -396,19 +416,11 @@
             // delete
             // 
             this.delete.HeaderText = "";
+            this.delete.Image = global::PresentationLayer.Properties.Resources.icons8_trash_30;
             this.delete.MinimumWidth = 6;
             this.delete.Name = "delete";
             this.delete.ReadOnly = true;
             this.delete.Width = 30;
-            // 
-            // flowLayoutPanelProduct
-            // 
-            this.flowLayoutPanelProduct.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.flowLayoutPanelProduct.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelProduct.Location = new System.Drawing.Point(186, 181);
-            this.flowLayoutPanelProduct.Name = "flowLayoutPanelProduct";
-            this.flowLayoutPanelProduct.Size = new System.Drawing.Size(646, 371);
-            this.flowLayoutPanelProduct.TabIndex = 5;
             // 
             // frmPOS
             // 
@@ -431,7 +443,7 @@
             this.panelTop.ResumeLayout(false);
             this.panelInfo.ResumeLayout(false);
             this.panelInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCloseForm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             this.panelSearch.ResumeLayout(false);
             this.panelSearch.PerformLayout();
             this.panelBottom.ResumeLayout(false);
@@ -445,7 +457,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panelTop;
-        private System.Windows.Forms.PictureBox pictureBoxCloseForm;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelSearch;
         private System.Windows.Forms.TextBox textBoxSearch;
@@ -464,6 +475,12 @@
         private System.Windows.Forms.Label labelTakeAway;
         private System.Windows.Forms.Button buttonCash;
         private System.Windows.Forms.Label labelList;
+        private System.Windows.Forms.Label labelTable;
+        private System.Windows.Forms.Panel panelInfo;
+        private System.Windows.Forms.Label labelNote;
+        private System.Windows.Forms.Label labelIsNOte;
+        private System.Windows.Forms.PictureBox pictureBoxClose;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaSanPham;
         private System.Windows.Forms.DataGridViewTextBoxColumn STT;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenSanPham;
@@ -471,9 +488,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SoLuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn ThanhTien;
         private System.Windows.Forms.DataGridViewImageColumn delete;
-        private System.Windows.Forms.Label labelTable;
-        private System.Windows.Forms.Panel panelInfo;
-        private System.Windows.Forms.Label labelNote;
-        private System.Windows.Forms.Label labelIsNOte;
     }
 }

@@ -14,6 +14,7 @@ namespace TransferObject
         public string TrangThai { get; set; }
         public string DaThanhToan { get; set; }
         public double TongTien { get; set; }
+        public double GiamGia { get; set; }
         public double TienNhan { get; set; }
         public double TienThua { get; set; }
         public int? MaBan { get; set; }  
@@ -26,22 +27,7 @@ namespace TransferObject
         {
             Details = new List<OrderDetail>();
         }
-        //save
-        //public Order(string loaiDonHang, int maTrangThai, string daThanhToan, double tongTien, double tienNhan, double tienThua,
-        //    int maBan, string ghiChu, DateTime thoiGian,List<OrderDetails> details)
-        //{
-            
-        //    LoaiDonHang = loaiDonHang;
-        //    MaTrangThai = maTrangThai;
-        //    DaThanhToan = daThanhToan;
-        //    TongTien = tongTien;
-        //    TienNhan = tienNhan;
-        //    TienThua = tienThua;
-        //    MaBan = maBan;
-        //    GhiChu = ghiChu;
-        //    ThoiGian = thoiGian;
-        //    Details = details;
-        //}
+       
       
     }
    

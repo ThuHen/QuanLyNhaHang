@@ -17,6 +17,8 @@ namespace PresentationLayer
     public partial class UserControlProduct : UserControl
     {
         private ProductBL productBL;
+        public byte[] imageByteArray = null;
+        public string maSanPhamEdit = "";
         public UserControlProduct()
         {
             InitializeComponent();
@@ -26,7 +28,7 @@ namespace PresentationLayer
         private void UserControlProduct_Load(object sender, EventArgs e)
         {
             LoadAllProducts();
-            LoadCategoryToComboBox();
+            LoadCategory();
             textBoxSearch.Focus();
             SetupColumns();
         }
@@ -45,9 +47,9 @@ namespace PresentationLayer
                 else
                 {
                     dataGridView.DataSource = productBL.GetAllProducts()
-     .Where(c => c.TenSanPham.ToLower().Contains(textBoxSearch.Text.ToLower()))
-     .OrderBy(c => c.TenSanPham)
-     .ToList();
+                             .Where(c => c.TenSanPham.ToLower().Contains(textBoxSearch.Text.ToLower()))
+                             .OrderBy(c => c.TenSanPham)
+                             .ToList();
                 }
                 buttonTotal.Text = dataGridView.Rows.Count.ToString();
             }
@@ -56,19 +58,55 @@ namespace PresentationLayer
                 MessageBox.Show(ex.Message);
             }
         }
-        private void LoadCategoryToComboBox()
+        private void LoadCategory()
         {
-            CategoryBL cboCategory = new CategoryBL();
-            comboBoxCategory.DataSource = cboCategory.GetAllCategories();
+            CategoryBL category = new CategoryBL();
+            List<Category> categoryList = category.GetAllCategories().OrderBy(c => c.TenDanhMuc).ToList();
+            comboBoxCategory.DataSource = categoryList;
             comboBoxCategory.DisplayMember = "TenDanhMuc";
             comboBoxCategory.ValueMember = "MaDanhMuc";
             comboBoxCategory.SelectedIndex = -1;
 
-            //if (catID > 0)
+            Icon defaultIcon = SystemIcons.Application;
+            pictureBoxImage.Image = defaultIcon.ToBitmap();
+            //pictureBoxImage.Image = Properties.Resources.icons8_food_bar_100;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                pictureBoxImage.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+                imageByteArray = ms.ToArray();
+            }
+
+            //// Tạo GroupBox
+            //GroupBox groupBox = new GroupBox();
+            //groupBox.Text = "Danh mục sản phẩm";
+            //groupBox.Width = 200;
+            //groupBox.Height = 30 + categoryList.Count * 30;
+            //groupBox.Location = new Point(10, 10);
+
+            //// Tạo FlowLayoutPanel
+            //FlowLayoutPanel flowPanel = new FlowLayoutPanel();
+            //flowPanel.Dock = DockStyle.Fill;
+            //flowPanel.FlowDirection = FlowDirection.LeftToRight; // xếp ngang
+            //flowPanel.WrapContents = true; // tự xuống dòng nếu hết chỗ
+            //flowPanel.AutoScroll = true;
+
+            //// Thêm RadioButton vào GroupBox
+            //int y = 20;
+            //foreach (var cat in categoryList.OrderBy(c => c.TenDanhMuc).ToList())
             //{
-            //    cbCat.SelectedValue = catID;
+            //    RadioButton rb = new RadioButton();
+            //    rb.Text = cat.TenDanhMuc;
+            //    rb.Location = new Point(10, y);
+            //    rb.AutoSize = true;
+            //    groupBox.Controls.Add(rb);
+            //    y += 25;
             //}
 
+            //// Add flowPanel vào groupBox
+            //groupBox.Controls.Add(flowPanel);
+
+            //// Add groupBox vào panel chính
+            //panel1.Controls.Add(groupBox);
         }
         private void SetupColumns()
         {
@@ -107,6 +145,7 @@ namespace PresentationLayer
             colEdit.Name = "Edit";
             colEdit.HeaderText = "";
             colEdit.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            colEdit.Image = Properties.Resources.icons8_edit_pencil_30;
             dataGridView.Columns.Add(colEdit);
 
             // Cột Delete
@@ -114,6 +153,7 @@ namespace PresentationLayer
             colDelete.Name = "Delete";
             colDelete.HeaderText = "";
             colDelete.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            colDelete.Image = Properties.Resources.icons8_trash_30;
             dataGridView.Columns.Add(colDelete);
 
         }
@@ -123,9 +163,6 @@ namespace PresentationLayer
             textBoxSearch.Text = "";
             textBoxSearch.Focus();
         }
-        public byte[] imageByteArray = null;
-        public string maSanPhamEdit = "";
-
         private void buttonUpload_Click(object sender, EventArgs e)
         {
 
@@ -142,7 +179,6 @@ namespace PresentationLayer
             imageByteArray = ms.ToArray();
 
         }
-
         private void dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int col = e.ColumnIndex;
@@ -247,7 +283,7 @@ namespace PresentationLayer
                 // Thêm sản phẩm mới
                 AddProduct();
             }
-            
+
         }
         private void AddProduct()
         {
@@ -263,19 +299,38 @@ namespace PresentationLayer
             categoryId = comboBoxCategory.SelectedValue.ToString();
             int trangThai = checkBoxOn.Checked ? 1 : 0;
             mota = textBoxMota.Text.Trim();
+            try
+            {
+                double.Parse(price);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Giá sản phẩm không hợp lệ. Vui lòng nhập số.",
+                                    "Thông báo",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning);
+                return;
+            }
             Product product = new Product(name, double.Parse(price), int.Parse(categoryId), mota, trangThai, imageByteArray);
             try
             {
                 int numberOfRows = productBL.Add(product);
                 if (numberOfRows > 0)
                 {
-                    MessageBox.Show("Thêm sản phẩm thành công!");
+                    MessageBox.Show("Thêm sản phẩm thành công!",
+                                    "Thông báo",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
                     LoadAllProducts(); // Tải lại danh sách sản phẩm
                     resetInputField(); // Reset thông tin nhập
-                                    
-                    
+
+
                     textBoxName.Focus();
                 }
+            }
+            catch (ApplicationException ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi nghiệp vụ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (SqlException ex)
             {
@@ -285,7 +340,7 @@ namespace PresentationLayer
         }
         private void EditProduct()
         {
-            Product product = new Product( textBoxName.Text.Trim(), double.Parse(textBoxPrice.Text.Trim()),
+            Product product = new Product(textBoxName.Text.Trim(), double.Parse(textBoxPrice.Text.Trim()),
                 int.Parse(comboBoxCategory.SelectedValue.ToString()), textBoxMota.Text.Trim(),
                 checkBoxOn.Checked ? 1 : 0, imageByteArray);
             try
@@ -300,7 +355,7 @@ namespace PresentationLayer
                 resetInputField();
                 tabControlProduct.SelectedTab = tabPageList; // Quay lại tab danh sách
                 tabPageAddEdit.Text = "Tạo mới";
-                
+
             }
             catch (SqlException ex)
             {

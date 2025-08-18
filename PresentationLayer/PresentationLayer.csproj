@@ -33,8 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +52,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\reportBill1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>reportBill.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportDataSet%28%29.cs">
+      <DependentUpon>ReportDataSet%28%29.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportDataSet%28%29.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportDataSet%28%29.xsd</DependentUpon>
+    </Compile>
     <Compile Include="frmBangDieuKhien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +107,12 @@
     <Compile Include="frmPOS.Designer.cs">
       <DependentUpon>frmPOS.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrint.Designer.cs">
+      <DependentUpon>frmPrint.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSelectTable.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +126,12 @@
     </Compile>
     <Compile Include="frmNoteOrder.Designer.cs">
       <DependentUpon>frmNoteOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControlAccount.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControlAccount.Designer.cs">
+      <DependentUpon>UserControlAccount.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControlCategory.cs">
       <SubType>UserControl</SubType>
@@ -144,21 +181,26 @@
     <EmbeddedResource Include="frmPOS.resx">
       <DependentUpon>frmPOS.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPrint.resx">
+      <DependentUpon>frmPrint.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSelectTable.resx">
       <DependentUpon>frmSelectTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="frmNoteOrder.resx">
       <DependentUpon>frmNoteOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\reportBill.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>reportBill1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControlAccount.resx">
+      <DependentUpon>UserControlAccount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControlCategory.resx">
       <DependentUpon>UserControlCategory.cs</DependentUpon>
@@ -175,6 +217,17 @@
     <EmbeddedResource Include="UserControlOneProduct.resx">
       <DependentUpon>UserControlOneProduct.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="Reports\ReportDataSet%28%29.xsc">
+      <DependentUpon>ReportDataSet%28%29.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\ReportDataSet%28%29.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReportDataSet%28%29.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\ReportDataSet%28%29.xss">
+      <DependentUpon>ReportDataSet%28%29.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -214,9 +267,6 @@
     <None Include="Resources\icons8-horizontal-line-64.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icons8-close-64.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-restaurant-64.png" />
   </ItemGroup>
   <ItemGroup>
@@ -232,12 +282,6 @@
     <None Include="Resources\icons8-restaurant-641.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\icons8-chef-hat-100.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\icons8-chef-hat-50 %281%29.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\icons8-service-bell-100.png" />
   </ItemGroup>
   <ItemGroup>
@@ -245,6 +289,66 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-restaurant-table-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-close-window-26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-maximize-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-minimize-window-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-maximize-window-26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-minimize-window-26.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-reload-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-restaurant-table-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-restaurant-table-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-take-away-food-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-note-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-kitchen-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-new-ticket-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-list-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-delete-trash-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-edit-60.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-edit-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-edit-pencil-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-trash-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-food-bar-100.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

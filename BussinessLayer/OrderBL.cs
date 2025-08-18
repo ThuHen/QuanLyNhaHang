@@ -65,17 +65,20 @@ namespace BussinessLayer
             }
         }
 
-        public int UpdatePayment(int orderId, double total, double received, double change)
+        public int UpdatePayment(int orderId, double total,double discount, double received, double change)
         {
             
-            return orderDL.UpdatePayment(orderId, total, received, change);
+            return orderDL.UpdatePayment(orderId, total, discount, received, change);
         }
         public void MarkStatusOrder(int mainId, string trangThai)
         {
             orderDL.MarkStatusOrder(mainId, trangThai);
         }
 
-
+        public int getTableIdByOrderId(int orderId)
+        {
+            return orderDL.getTableIdByOrderId(orderId);
+        }
 
         //public List<Order> GetKitchenOrders()
         //{

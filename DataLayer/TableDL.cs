@@ -14,14 +14,25 @@ namespace DataLayer
     {
       
         public List<Table> GetAllTables()
-        {   
-            string sql = "SELECT b.*, d.MaDonHang, t.TrangThai FROM BanAn b " +
-                "inner join TrangThaiBan t on b.MaTrangThai = t.MaTrangThai" +
-                " left join DonHang d on b.MaBan = d.MaBan ";
+        {
+            string sql = @"
+                    SELECT 
+                        b.*,
+                        t.TrangThai,
+                        d.MaDonHang
+                    FROM BanAn b
+                    INNER JOIN TrangThaiBan t 
+                        ON b.MaTrangThai = t.MaTrangThai
+                    LEFT JOIN DonHang d 
+                        ON b.MaBan = d.MaBan AND d.DaThanhToan <> N'Đã thanh toán'
+                    ";
+            // "where d.DaThanhToan != @daThanhToan"; // Lấy tất cả bàn trừ bàn đã xóa
             string id, name, viTri, trangThai, ghiChu;
             int soChoNgoi, maTrangThai, maDonHang;
             DateTime ngayTao, ngayCapNhat;
             List<Table> tables = new List<Table>();
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            //parameters.Add(new SqlParameter("@daThanhToan", "Đã thanh toán")); // Chỉ lấy bàn chưa thanh toán
             try
             {
                 Connect();
@@ -122,7 +133,23 @@ namespace DataLayer
                 throw ex; 
             }
         }
-
+        public void MarkStatusTable(int maBan, int status)
+        {
+            string sql = "UPDATE BanAn SET MaTrangThai = @maTrangThai, NgayCapNhat = GETDATE() WHERE MaBan = @maBan";
+            List<SqlParameter> parameters = new List<SqlParameter>
+            {
+                new SqlParameter("@maBan", maBan),
+                new SqlParameter("@maTrangThai", status)
+            };
+            try
+            {
+                MyExcuteNonQuery(sql, CommandType.Text, parameters);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
 
 
     }

@@ -20,17 +20,27 @@ namespace PresentationLayer
         public double tienThua;
         public double giamGia = 0;
         public int selectedOrder = 0;
+        public string orderType = "";
         OrderBL orderBL;
+        TableBL tableBL;
         public frmPayment()
         {
             InitializeComponent();
             orderBL = new OrderBL();
+            tableBL = new TableBL();
         }
-
-
         private void buttonFastCash_Click(object sender, EventArgs e)
         {
-            int thanhToan = orderBL.UpdatePayment(selectedOrder, thanhTien, thanhTien, 0);
+
+            int thanhToan = orderBL.UpdatePayment(selectedOrder, thanhTien,0, thanhTien, 0);
+            if (orderType == "Ăn tại bàn")
+            {
+                //cap nhat trang thai ban
+                int maBan =orderBL.getTableIdByOrderId(selectedOrder);
+                tableBL.MarkStatusTable(maBan, 1); // Gọi phương thức MarkStatusTable để cập nhật trạng thái bàn
+
+            }
+
             if (thanhToan > 0)
             {
                 MessageBox.Show("Thanh toán thành công");
@@ -41,8 +51,6 @@ namespace PresentationLayer
                 MessageBox.Show("Thanh toán thất bại, vui lòng thử lại sau");
             }
         }
-
-
         private void buttonSave_Click(object sender, EventArgs e)
         {
             tienNhan = double.Parse(textBoxReceive.Text);
@@ -63,7 +71,14 @@ namespace PresentationLayer
                 return;
             }
 
-            int thanhToan = orderBL.UpdatePayment(selectedOrder, thanhTien, tienNhan, tienThua);
+            int thanhToan = orderBL.UpdatePayment(selectedOrder, thanhTien,giamGia, tienNhan, tienThua);
+            if (orderType == "Ăn tại bàn")
+            {
+                //cap nhat trang thai ban
+                int maBan = orderBL.getTableIdByOrderId(selectedOrder);
+                tableBL.MarkStatusTable(maBan, 1); // Gọi phương thức MarkStatusTable để cập nhật trạng thái bàn
+
+            }
             if (thanhToan > 0)
             {
                 MessageBox.Show("Thanh toán thành công");
@@ -75,7 +90,6 @@ namespace PresentationLayer
             }
 
         }
-
         private void frmPayment_Load(object sender, EventArgs e)
         {
             textBoxTotal.Text = total.ToString() + " VND";
@@ -84,8 +98,6 @@ namespace PresentationLayer
             textBoxAmount.Text = thanhTien.ToString() + " VND";
 
         }
-
-
         private void textBoxDiscount_TextChanged(object sender, EventArgs e)
         {
             if (textBoxDiscount.Text != "")
@@ -103,12 +115,10 @@ namespace PresentationLayer
 
 
         }
-
         private void pictureBoxCloseForm_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
         }
-
         private void textBoxReceive_TextChanged(object sender, EventArgs e)
         {
             if (textBoxReceive.Text != "")

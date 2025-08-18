@@ -61,5 +61,16 @@ namespace BussinessLayer
                 throw ex;
             }
         }
+        public void MarkStatusTable(int maBan, int status)
+        {
+            try
+            {
+                TableDL.MarkStatusTable(maBan, status);
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

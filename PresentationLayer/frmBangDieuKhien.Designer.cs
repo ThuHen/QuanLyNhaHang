@@ -73,7 +73,7 @@
             // 
             this.pictureBoxMinForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxMinForm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxMinForm.Image = global::PresentationLayer.Properties.Resources.icons8_close_64;
+            this.pictureBoxMinForm.Image = global::PresentationLayer.Properties.Resources.icons8_minimize_window_26;
             this.pictureBoxMinForm.Location = new System.Drawing.Point(1122, 6);
             this.pictureBoxMinForm.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.pictureBoxMinForm.Name = "pictureBoxMinForm";
@@ -101,7 +101,7 @@
             this.pictureBoxMaxForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxMaxForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.pictureBoxMaxForm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxMaxForm.Image = global::PresentationLayer.Properties.Resources.icons8_horizontal_line_64;
+            this.pictureBoxMaxForm.Image = global::PresentationLayer.Properties.Resources.icons8_maximize_window_26;
             this.pictureBoxMaxForm.Location = new System.Drawing.Point(1169, 6);
             this.pictureBoxMaxForm.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.pictureBoxMaxForm.Name = "pictureBoxMaxForm";
@@ -115,7 +115,7 @@
             // 
             this.pictureBoxClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxClose.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxClose.Image = global::PresentationLayer.Properties.Resources.icons8_close_64;
+            this.pictureBoxClose.Image = global::PresentationLayer.Properties.Resources.icons8_close_window_26;
             this.pictureBoxClose.Location = new System.Drawing.Point(1217, 6);
             this.pictureBoxClose.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.pictureBoxClose.Name = "pictureBoxClose";
@@ -194,15 +194,16 @@
             this.buttonAccount.TabIndex = 16;
             this.buttonAccount.Text = "Tài Khoản";
             this.buttonAccount.UseVisualStyleBackColor = false;
+            this.buttonAccount.Click += new System.EventHandler(this.buttonAccount_Click);
             // 
             // buttonDanhMuc
             // 
             this.buttonDanhMuc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.buttonDanhMuc.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonDanhMuc.Location = new System.Drawing.Point(17, 79);
+            this.buttonDanhMuc.Location = new System.Drawing.Point(13, 79);
             this.buttonDanhMuc.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDanhMuc.Name = "buttonDanhMuc";
-            this.buttonDanhMuc.Size = new System.Drawing.Size(205, 48);
+            this.buttonDanhMuc.Size = new System.Drawing.Size(209, 48);
             this.buttonDanhMuc.TabIndex = 8;
             this.buttonDanhMuc.Text = "Danh mục";
             this.buttonDanhMuc.UseVisualStyleBackColor = false;

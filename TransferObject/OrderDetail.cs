@@ -18,12 +18,6 @@ namespace TransferObject
         public OrderDetail()
         {
         }
-        //save
-        //public OrderDetails( int maSanPham, int soLuong)
-        //{
-        //    MaSanPham = maSanPham;
-        //    SoLuong = soLuong;         
-        //}
-
+       
     }
 }

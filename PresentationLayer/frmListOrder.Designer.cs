@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panelTop = new System.Windows.Forms.Panel();
-            this.pictureBoxCloseForm = new System.Windows.Forms.PictureBox();
+            this.pictureBoxClose = new System.Windows.Forms.PictureBox();
             this.labelNote = new System.Windows.Forms.Label();
             this.panelFilter = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -47,7 +47,7 @@
             this.Edit = new System.Windows.Forms.DataGridViewImageColumn();
             this.ColPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.panelTop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCloseForm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.panelFilter.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -56,37 +56,37 @@
             // panelTop
             // 
             this.panelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.panelTop.Controls.Add(this.pictureBoxCloseForm);
+            this.panelTop.Controls.Add(this.pictureBoxClose);
             this.panelTop.Controls.Add(this.labelNote);
             this.panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTop.Location = new System.Drawing.Point(0, 0);
             this.panelTop.Name = "panelTop";
-            this.panelTop.Size = new System.Drawing.Size(1200, 80);
+            this.panelTop.Size = new System.Drawing.Size(1200, 50);
             this.panelTop.TabIndex = 4;
             // 
-            // pictureBoxCloseForm
+            // pictureBoxClose
             // 
-            this.pictureBoxCloseForm.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxCloseForm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxCloseForm.Image = global::PresentationLayer.Properties.Resources.icons8_close_64;
-            this.pictureBoxCloseForm.Location = new System.Drawing.Point(1128, 21);
-            this.pictureBoxCloseForm.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.pictureBoxCloseForm.Name = "pictureBoxCloseForm";
-            this.pictureBoxCloseForm.Size = new System.Drawing.Size(37, 37);
-            this.pictureBoxCloseForm.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBoxCloseForm.TabIndex = 2;
-            this.pictureBoxCloseForm.TabStop = false;
-            this.pictureBoxCloseForm.Click += new System.EventHandler(this.pictureBoxCloseForm_Click);
+            this.pictureBoxClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxClose.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBoxClose.Image = global::PresentationLayer.Properties.Resources.icons8_close_window_26;
+            this.pictureBoxClose.Location = new System.Drawing.Point(1149, 9);
+            this.pictureBoxClose.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.pictureBoxClose.Name = "pictureBoxClose";
+            this.pictureBoxClose.Size = new System.Drawing.Size(37, 37);
+            this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxClose.TabIndex = 14;
+            this.pictureBoxClose.TabStop = false;
+            this.pictureBoxClose.Click += new System.EventHandler(this.pictureBoxCloseForm_Click);
             // 
             // labelNote
             // 
+            this.labelNote.AutoSize = true;
             this.labelNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelNote.Image = global::PresentationLayer.Properties.Resources.icons8_user_100;
             this.labelNote.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.labelNote.Location = new System.Drawing.Point(327, 22);
+            this.labelNote.Location = new System.Drawing.Point(23, 9);
             this.labelNote.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelNote.Name = "labelNote";
-            this.labelNote.Size = new System.Drawing.Size(548, 36);
+            this.labelNote.Size = new System.Drawing.Size(351, 36);
             this.labelNote.TabIndex = 1;
             this.labelNote.Text = "Danh sách đơn đặt món";
             this.labelNote.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -95,7 +95,7 @@
             // 
             this.panelFilter.Controls.Add(this.groupBox1);
             this.panelFilter.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelFilter.Location = new System.Drawing.Point(0, 80);
+            this.panelFilter.Location = new System.Drawing.Point(0, 50);
             this.panelFilter.Name = "panelFilter";
             this.panelFilter.Size = new System.Drawing.Size(1200, 50);
             this.panelFilter.TabIndex = 5;
@@ -172,7 +172,7 @@
             this.Edit,
             this.ColPrint});
             this.dataGridView1.GridColor = System.Drawing.SystemColors.GrayText;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 148);
+            this.dataGridView1.Location = new System.Drawing.Point(12, 123);
             this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -180,7 +180,7 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1176, 543);
+            this.dataGridView1.Size = new System.Drawing.Size(1176, 568);
             this.dataGridView1.TabIndex = 6;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -235,6 +235,7 @@
             // Edit
             // 
             this.Edit.HeaderText = "";
+            this.Edit.Image = global::PresentationLayer.Properties.Resources.icons8_edit_pencil_30;
             this.Edit.MinimumWidth = 6;
             this.Edit.Name = "Edit";
             this.Edit.ReadOnly = true;
@@ -243,6 +244,7 @@
             // ColPrint
             // 
             this.ColPrint.HeaderText = "In";
+            this.ColPrint.Image = global::PresentationLayer.Properties.Resources.icons8_trash_30;
             this.ColPrint.MinimumWidth = 6;
             this.ColPrint.Name = "ColPrint";
             this.ColPrint.ReadOnly = true;
@@ -264,7 +266,8 @@
             this.Text = "frmBillList";
             this.Load += new System.EventHandler(this.frmBillList_Load);
             this.panelTop.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxCloseForm)).EndInit();
+            this.panelTop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).EndInit();
             this.panelFilter.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -277,7 +280,6 @@
 
         private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Label labelNote;
-        private System.Windows.Forms.PictureBox pictureBoxCloseForm;
         private System.Windows.Forms.Panel panelFilter;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label labelSum;
@@ -285,6 +287,7 @@
         private System.Windows.Forms.RadioButton radioButton1;
         private System.Windows.Forms.RadioButton radioButtonAll;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.PictureBox pictureBoxClose;
         private System.Windows.Forms.DataGridViewTextBoxColumn ThoiGian;
         private System.Windows.Forms.DataGridViewTextBoxColumn MaDonHang;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenBan;
